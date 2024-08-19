@@ -21,5 +21,14 @@ const addProduct = async (req, res) => {
     });
 };
 
+const removeProduct = async (req, res) => {
+    await Product.findOneAndDelete({ id: req.body.id });
+    console.log("Product removed:", req.body.id);
+    res.json({
+        success: true,
+        name: req.body.name
+    });
+};
 
-module.exports = { addProduct };
+
+module.exports = { addProduct, removeProduct };
