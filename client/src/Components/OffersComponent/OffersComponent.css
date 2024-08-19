@@ -1,0 +1,131 @@
+.ouroffers {
+    width: 65%;
+    height: 60vh;
+    display: flex;
+    margin: auto;
+    padding: 0 140px;
+    margin-bottom: 150px;
+    background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+}
+.ouroffers-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ouroffers-left h1 {
+    color: #171717;
+    font-size: 80px;
+    font-weight: 600;
+}
+.ouroffers-left p {
+    color: #171717;
+    font-size: 22px;
+    font-weight: 600;
+}
+.ouroffers-left button {
+    width: 282px;
+    height: 70px;
+    border-radius: 35px;
+    background: #ff4141;
+    border: none;
+    color: wheat;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.ouroffers-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+@media(max-width:1280px){
+    .ouroffers{
+        padding: 0 80px;
+        margin-bottom: 120px;
+    }
+    .ouroffers-left h1{
+        font-size: 40px;
+    }
+    .ouroffers-left p{
+        font-size: 18px;
+    }
+    .ouroffers-right img{
+        width: 300px;
+    }
+    .ouroffers-left button{
+        width: 220px;
+        height: 50px;
+        font-size: 18px;
+    }
+    .ouroffers-right{
+        padding-top: 30px;
+    }
+}
+@media(max-width:1024px){
+    .ouroffers{
+        padding: 0 60px;
+        margin-bottom: 80px;
+        height: 40vh;
+    }
+    .ouroffers-left h1{
+        font-size: 30px;
+    }
+    .ouroffers-left p{
+        font-size: 16px;
+    }
+    .ouroffers-right img{
+        width: 200px;
+    }
+    .ouroffers-left button{
+        width: 160px;
+        height: 40px;
+        font-size: 16px;
+    }
+    .ouroffers-right{
+        padding-top: 10px;
+    }
+}
+@media(max-width:800px){
+    .ouroffers{
+        margin-bottom: 60px;
+    }
+    .ouroffers-left h1{
+        font-size: 12px;
+    }
+    .ouroffers-left p{
+        font-size: 13px;
+    }
+    .ouroffers-right img{
+        width: 180px;
+    }
+    .ouroffers-left button{
+        width: 140px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+@media(max-width:500px){
+    .ouroffers{
+        height: 25vh;
+        margin-bottom: 50px;
+    }
+    .ouroffers-left h1{
+        font-size: 16px;
+    }
+    .ouroffers-left p{
+        font-size: 10px;
+    }
+    .ouroffers-right img{
+        width: 120px;
+    }
+    .ouroffers-left button{
+        width: 120px;
+        height: 25px;
+        font-size: 10px;
+        margin-top: 12px;
+    }
+}
