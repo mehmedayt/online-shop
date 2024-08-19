@@ -1,18 +1,19 @@
-const PORT = 4000;
-const express = require('express');
+const express = require("express");
+const connectDB = require("./config/db");
+const expressConfig = require("./config/express");
+
 const app = express();
-const mongoose = require('mongoose');
-const cors = require('cors');
+const port = 4000;
 
-app.use(express.json());
-app.use(cors());
+expressConfig(app);
 
-mongoose.connect('mongodb://localhost:27017/react-shop');
+connectDB();
 
-app.listen(PORT, (err) => {
-    if(!err){
-        console.log("Server is Running on Port: " + PORT);
-    }else{
-        console.log("ERROR: " + err);
+
+app.listen(port, (error) => {
+    if (!error) {
+        console.log("Server running on port " + port);
+    } else {
+        console.log("Error: " + error);
     }
 });
