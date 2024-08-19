@@ -3,10 +3,7 @@ const MONGODB_URI = 'mongodb://localhost:27017/reactProject'
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(MONGODB_URI);
         console.log("MongoDB connected successfully");
     } catch (err) {
         console.error("MongoDB connection failed: ", err);

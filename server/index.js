@@ -1,14 +1,20 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const expressConfig = require("./config/express");
+const productRoutes = require("./routes/productRoutes");
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 expressConfig(app);
 
 connectDB();
 
+app.use("/", productRoutes);
+
+app.get("/", (req, res) => {
+    res.send("Express App is Running");
+});
 
 app.listen(port, (error) => {
     if (!error) {
