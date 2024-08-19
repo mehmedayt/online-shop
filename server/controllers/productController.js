@@ -30,5 +30,10 @@ const removeProduct = async (req, res) => {
     });
 };
 
+const getAllProducts = async (req, res) => {
+    let products = await Product.find({});
+    console.log("All products fetched");
+    res.send(products);
+};
 
-module.exports = { addProduct, removeProduct };
+module.exports = { addProduct, removeProduct, getAllProducts };
