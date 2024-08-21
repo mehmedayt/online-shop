@@ -61,7 +61,7 @@ const LoginSignupPage = () => {
   return (
     <div className="login">
       <div className="login-container">
-        <h1>Sign up</h1>
+        <h1>{state}</h1>
         <div className="login-fields">
         <div className="login-fields">
         {state === "Sign up"?<input name="username" value={formData.username} onChange={changeHandler} type="text" placeholder="Your Name" />:<></>}
