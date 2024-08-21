@@ -1,5 +1,5 @@
 const express = require("express");
-const { addProduct, removeProduct, getAllProducts } = require("../controllers/productController");
+const { addProduct, removeProduct, getAllProducts, getNewCollection } = require("../controllers/productController");
 const upload = require("../config/multer");
 
 const router = express.Router();
@@ -15,5 +15,6 @@ router.post('/upload', upload.single('product'), (req, res) => {
 router.post('/addproduct', addProduct);
 router.post('/removeproduct', removeProduct);
 router.get('/allproducts', getAllProducts);
+router.get('/newcollection', getNewCollection);
 
 module.exports = router;
