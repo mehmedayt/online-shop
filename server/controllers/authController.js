@@ -36,3 +36,27 @@ exports.signup = async (req, res) => {
         res.status(500).json({ success: false, errors: 'Error' });
     }
 };
+
+exports.login = async (req, res) => {
+    try {
+        let user = await User.findOne({ email: req.body.email });
+        if (user) {
+            const passCompare = req.body.password === user.password; 
+            if (passCompare) {
+                const data = {
+                    user: {
+                        id: user.id
+                    }
+                };
+                const token = jwt.sign(data, process.env.JWT_SECRET || 'secret_onlstore');
+                res.json({ success: true, token });
+            } else {
+                res.status(400).json({ success: false, errors: 'Wrong password' });
+            }
+        } else {
+            res.status(400).json({ success: false, errors: 'Wrong email id' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, errors: 'Server error' });
+    }
+};
