@@ -43,4 +43,11 @@ const getNewCollection = async(req,res)=>{
     res.send(newcollection);
 }
 
-module.exports = { addProduct, removeProduct, getAllProducts, getNewCollection };
+const getPopular = async (req,res)=>{
+    let products = await Product.find({category:"women"});
+    let popularInWomen = products.slice(0,4);
+    console.log("Popular in Women Fetched");
+    res.send(popularInWomen);
+};
+
+module.exports = { addProduct, removeProduct, getAllProducts, getNewCollection, getPopular };
