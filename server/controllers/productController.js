@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const User = require('../models/User');
 
 const addProduct = async (req, res) => {
     let products = await Product.find({});
@@ -50,4 +51,12 @@ const getPopular = async (req,res)=>{
     res.send(popularInWomen);
 };
 
-module.exports = { addProduct, removeProduct, getAllProducts, getNewCollection, getPopular };
+const addToCart = async (req,res)=>{
+    console.log("added",req.body.itemId);
+    let userData = await User.findOne({_id:req.user.id});
+    userData.cartData[req.body.itemId] += 1;
+    await User.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData});
+    res.send("Added");
+};
+
+module.exports = { addProduct, removeProduct, getAllProducts, getNewCollection, getPopular, addToCart };

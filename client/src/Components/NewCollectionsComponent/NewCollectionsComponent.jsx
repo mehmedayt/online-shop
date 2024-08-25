@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import "./NewCollectionsComponent.css";
 import Item from "../ItemComponent/ItemComponent";
 import { useEffect, useState } from "react";

@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable semi */
 import { useContext, useState } from 'react';
 import './NavbarComponent.css';

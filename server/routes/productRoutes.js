@@ -1,7 +1,7 @@
 const express = require("express");
-const { addProduct, removeProduct, getAllProducts, getNewCollection, getPopular } = require("../controllers/productController");
+const { addProduct, removeProduct, getAllProducts, getNewCollection, getPopular, addToCart } = require("../controllers/productController");
 const upload = require("../config/multer");
-
+const { fetchUser } = require("../middlewares/fetchUser");
 const router = express.Router();
 const PORT = 4000;
 
@@ -17,5 +17,6 @@ router.post('/removeproduct', removeProduct);
 router.get('/allproducts', getAllProducts);
 router.get('/newcollection', getNewCollection);
 router.get('/popularinwomen', getPopular);
+router.post('/addtocart', fetchUser, addToCart);
 
 module.exports = router;
