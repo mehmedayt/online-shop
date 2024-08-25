@@ -59,4 +59,16 @@ const addToCart = async (req,res)=>{
     res.send("Added");
 };
 
-module.exports = { addProduct, removeProduct, getAllProducts, getNewCollection, getPopular, addToCart };
+const removeFromCart = async (req, res) => {
+    console.log("removed", req.body.itemId);
+    let userData = await User.findOne({ _id: req.user.id });
+    if (userData.cartData[req.body.itemId] > 0)
+      userData.cartData[req.body.itemId] -= 1;
+    await User.findOneAndUpdate(
+      { _id: req.user.id },
+      { cartData: userData.cartData }
+    );
+    res.send("Removed");
+  };
+  
+module.exports = { addProduct, removeProduct, getAllProducts, getNewCollection, getPopular, addToCart, removeFromCart};
