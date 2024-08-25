@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 const addProduct = async (req, res) => {
     let products = await Product.find({});
-    let id = products.length > 0 ? products[products.length - 1].id + 1 : 1;
+    let id = products.length > 0 ? products[products.length - 1].id + 1 : 38;
 
     const product = new Product({
         id: id,
