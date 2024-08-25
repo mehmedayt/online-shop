@@ -70,5 +70,13 @@ const removeFromCart = async (req, res) => {
     );
     res.send("Removed");
   };
+
   
-module.exports = { addProduct, removeProduct, getAllProducts, getNewCollection, getPopular, addToCart, removeFromCart};
+const getCart = async (req,res)=>{
+    console.log("GetCart");
+    let userData = await User.findOne({_id:req.user.id});
+    res.json(userData.cartData);
+};
+
+  
+module.exports = { addProduct, removeProduct, getAllProducts, getNewCollection, getPopular, addToCart, removeFromCart, getCart};
