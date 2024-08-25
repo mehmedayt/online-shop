@@ -1,12 +1,14 @@
 const User = require('../models/User');
 require ('dotenv').config();
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
 
 exports.signup = async (req, res) => {
     try {
         let check = await User.findOne({ email: req.body.email });
         if (check) {
-            return res.status(400).json({ success: false, errors: "User exist!" });
+            return res.status(400).json({ success: false, errors: "User exists!" });
         }
 
         let cart = {};
@@ -14,10 +16,13 @@ exports.signup = async (req, res) => {
             cart[i] = 0;
         };
 
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
         const user = new User({
             name: req.body.username,
             email: req.body.email,
-            password: req.body.password,
+            password: hashedPassword, 
             cartData: cart
         });
 
@@ -41,7 +46,7 @@ exports.login = async (req, res) => {
     try {
         let user = await User.findOne({ email: req.body.email });
         if (user) {
-            const passCompare = req.body.password === user.password; 
+            const passCompare = await bcrypt.compare(req.body.password, user.password);
             if (passCompare) {
                 const data = {
                     user: {
