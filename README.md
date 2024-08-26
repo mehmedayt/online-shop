@@ -110,29 +110,29 @@ https://github.com/mehmedayt/online-shop.git
 Here are some screenshots of the client-side interface of the application:
 
 1. **Home Page**
-   ![Home Page](src="./admin/public/home.png")
+   <img alt="project-photo" src="./admin/public/home.png" />
 
 2. **New Collection**
-    ![New Collection](src="./admin/public/home-new-collection.png")
+    <img alt="project-photo" src="./admin/public/home-new-collection.png" />
 
 3. **Product Listing**
-   ![Product Listing](src="./admin/public/home-catalog.png")
+   <img alt="project-photo" src="./admin/public/home-catalog.png" />
 
 4. **Product Details**
-   ![Product Details](src="./admin/public/home-details.png")
+   <img alt="project-photo" src="./admin/public/home-details.png" />
 
 5. **Shopping Cart**
-   ![Shopping Cart](src="./admin/public/home-cart.png")
+   <img alt="project-photo" src="./admin/public/home-cart.png" />
 
 ### **Admin Panel**
 
 Below are screenshots of the admin panel, which is used to manage products and orders:
 
 1. **All Products Page**
-   ![All Products Page](src="./admin/public/admin-product-list.png")
+   <img alt="project-photo" src="./admin/public/admin-product-list.png" />
 
 2. **Add Product Page**
-   ![Add Product Page](src="./admin/public/admin-add-product.png")
+   <img alt="project-photo" src="./admin/public/admin-add-product.png" />
 
 ## Contact
 
