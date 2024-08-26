@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './AddProduct.css';
 import upload_area from '../../assets/upload_area.svg';
-import Popup from '../Popup/Popup'; // Актуализирайте пътя според структурата на проекта
+import Popup from '../Popup/Popup'; 
 
 const AddProduct = () => {
   const [productDetails, setProductDetails] = useState({
@@ -58,7 +58,7 @@ const AddProduct = () => {
           Accept: 'application/json',
         },
         body: formData,
-      }).then((res) => res.json()).then((data) => { resData = data });
+      }).then((res) => res.json()).then((data) => { resData = data; });
 
       handleErrors(resData);
 
