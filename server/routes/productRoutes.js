@@ -7,7 +7,8 @@ const {
   getPopular,
   addToCart,
   removeFromCart,
-  getCart
+  getCart,
+  subscribe
 } = require("../controllers/productController");
 const upload = require("../config/multer");
 const { fetchUser } = require("../middlewares/fetchUser");
@@ -29,5 +30,6 @@ router.get("/popularinwomen", getPopular);
 router.post("/addtocart", fetchUser, addToCart);
 router.post("/removefromcart", fetchUser, removeFromCart);
 router.post("/getcart", fetchUser, getCart);
+router.post("/subscribe", subscribe);
 
 module.exports = router;

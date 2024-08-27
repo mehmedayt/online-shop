@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import './PopUpComponent.css';  // Включете вашия CSS файл
+import './PopUpComponent.css';  // 
 
 const Popup = ({ show, handleClose, title, message }) => {
   if (!show) {return null;}  
