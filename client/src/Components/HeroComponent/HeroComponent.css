@@ -43,6 +43,7 @@
     color: wheat;
     font-size: 22px;
     font-weight: 500;
+    cursor: pointer;
 }
 .myhero-right {
     flex: 1;

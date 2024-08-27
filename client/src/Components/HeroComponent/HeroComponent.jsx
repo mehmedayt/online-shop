@@ -4,6 +4,12 @@ import arrow_icon from '../../assets/arrow.png';
 import hero_image from '../../assets/hero_image.png';
 
 const HeroComponent = () => {
+    const scrollToLastest = () => {
+        window.scrollTo({
+            top: document.body.scrollHeight / 2,
+            behavior: 'smooth'
+        });
+    };
     return (
         <div className="myhero">
             <div className="myhero-left">
@@ -16,7 +22,7 @@ const HeroComponent = () => {
                     <p>collections</p>
                     <p>for everyone</p>
                 </div>
-                <div className="myhero-latest-btn">
+                <div className="myhero-latest-btn" onClick={scrollToLastest}>
                     <div>Latest Collection</div>
                     <img src={arrow_icon} alt="" />
                 </div>
