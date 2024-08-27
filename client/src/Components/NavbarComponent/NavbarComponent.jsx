@@ -1,32 +1,70 @@
-/* eslint-disable quotes */
-/* eslint-disable semi */
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import './NavbarComponent.css';
 import logo from '../../assets/logo.png';
 import cart_icon from '../../assets/cart_icon.png';
-import { Link } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
 
 const NavbarComponent = () => {
-    const [menu, setMenu] = useState('shop'); 
-    const {getTotalCartItems} = useContext(ShopContext);
-    return(
+    const { getTotalCartItems } = useContext(ShopContext);
+
+    return (
         <div className="navigation">
             <div className="nav-logo">
-                <img src={logo} alt="" />
+                <img src={logo} alt="Shop Logo" />
                 <p>SHOPPER</p>
             </div>
             <ul className="nav-menu">
-                <li onClick={()=>{setMenu("shop")}}><Link style={{textDecoration: 'none' }} to='/'>Shop</Link>{menu==="shop"?<hr/>:<></>}</li>
-                <li onClick={()=>{setMenu("mens")}}><Link style={{textDecoration: 'none' }} to='/mens'>Men</Link>{menu==="mens"?<hr/>:<></>}</li>
-                <li onClick={()=>{setMenu("womens")}}><Link style={{textDecoration: 'none' }} to='/womens'>Women</Link>{menu==="womens"?<hr/>:<></>}</li>
-                <li onClick={()=>{setMenu("kids")}}><Link style={{textDecoration: 'none' }} to='/kids'>Kids</Link>{menu==="kids"?<hr/>:<></>}</li>
+                <li>
+                    <NavLink 
+                        exact 
+                        to="/" 
+                        className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
+                        Shop
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/mens" 
+                        className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
+                        Men
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/womens" 
+                        className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
+                        Women
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/kids" 
+                        className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
+                        Kids
+                    </NavLink>
+                </li>
             </ul>
             <div className="nav-login-cart">
-            {localStorage.getItem('auth-token')
-                ?<button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>Logout</button>
-                :<Link to='/login'><button>Login</button></Link>}
-                <Link to='/cart'><img src={cart_icon} alt="" /></Link>
+                {localStorage.getItem('auth-token') ? (
+                    <button onClick={() => {
+                        localStorage.removeItem('auth-token');
+                        window.location.replace('/');
+                    }}>
+                        Logout
+                    </button>
+                ) : (
+                    <Link to='/login'>
+                        <button>Login</button>
+                    </Link>
+                )}
+                <Link to='/cart'>
+                    <img src={cart_icon} alt="Cart Icon" />
+                </Link>
                 <div className="nav-cart-count">{getTotalCartItems()}</div>
             </div>
         </div>

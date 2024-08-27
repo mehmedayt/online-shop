@@ -43,7 +43,7 @@ The application is divided into three main components:
   - Handle image uploads for product images using `multer`.
   - Store images in a specified directory or integrate with cloud storage.
 
-**Email Notifications:**
+- **Email Notifications:**
 
   - Integrated SendGrid for handling email notifications.
   - SendGrid is used for sending subscription confirmation emails and other notifications.
