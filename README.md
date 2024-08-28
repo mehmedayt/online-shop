@@ -43,11 +43,18 @@ The application is divided into three main components:
   - Handle image uploads for product images using `multer`.
   - Store images in a specified directory or integrate with cloud storage.
 
-- **Email Notifications:**
+- **Email Notifications**
 
-  - Integrated SendGrid for handling email notifications.
-  - SendGrid is used for sending subscription confirmation emails and other notifications.
-  - To set up SendGrid, configure the API key in the server environment variables.
+- Subscription Confirmation:
+  - When a user subscribes to the newsletter, a confirmation email is sent.
+  - The email includes a thank you message and confirms the subscription.
+  - The message is formatted as: "Thank you for subscribing to our newsletter! We appreciate your interest."
+
+- Order Confirmation:
+  - Upon placing an order, a confirmation email is sent to the user.
+  - The email includes details of the ordered products, their prices, and the total amount.
+  - Additionally, the email informs the user that our team will get in touch with them.
+  - The message is formatted as: "Thank you for your order! Here are the details:\n\n${productNames}\n\nTotal Amount: $${price}\n\nOur team will get in touch with you soon to complete the process."
 
 ### **Admin Panel**
 
