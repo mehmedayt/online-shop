@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import "./CartItemsComponent.css";
 import { ShopContext } from "../../Context/ShopContext";
 import remove_icon from "../../assets/cart_cross_icon.png";
+import PopUpComponent from "../PopUpComponent/PopUpComponent"; 
 
 const CartItemsComponent = () => {
   const {
@@ -11,6 +12,11 @@ const CartItemsComponent = () => {
     removeFromCart,
     userEmail,
   } = useContext(ShopContext);
+
+  // Състояния за Pop-Up
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupTitle, setPopupTitle] = useState('');
+  const [popupMessage, setPopupMessage] = useState('');
 
   const handleCheckout = async () => {
     const cartItemsList = all_product.map((e) => {
@@ -22,36 +28,38 @@ const CartItemsComponent = () => {
           total: e.new_price * cartItems[e.id],
         };
       }
-    });
+      return null;
+    }).filter(item => item !== null);
+
     try {
-        const response = await fetch('http://localhost:4000/checkout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: userEmail, 
-                cartItems: cartItemsList,
-                totalAmount: getTotalCartAmount(),
-            }),
-        });
+      const response = await fetch('http://localhost:4000/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          cartItems: cartItemsList,
+          totalAmount: getTotalCartAmount(),
+        }),
+      });
 
-        console.log(response);
-        
-
-
-        const result = await response.json();
-        if (result.success) {
-            alert('Order placed!');
-        } else {
-            alert('Failed to send order confirmation');
-        }
+      const result = await response.json();
+      if (result.success) {
+        setPopupTitle('Order Placed');
+        setPopupMessage('Your order has been successfully placed!');
+      } else {
+        setPopupTitle('Order Failed');
+        setPopupMessage('Failed to send order confirmation. Please try again.');
+      }
     } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to send order confirmation');
+      console.error('Error:', error);
+      setPopupTitle('Error');
+      setPopupMessage('An unexpected error occurred. Please try again.');
+    } finally {
+      setShowPopup(true);
     }
-};
-  
+  };
 
   return (
     <div className="cartitem">
@@ -116,6 +124,13 @@ const CartItemsComponent = () => {
           </div>
         </div>
       </div>
+      
+      <PopUpComponent
+        show={showPopup}
+        handleClose={() => setShowPopup(false)}
+        title={popupTitle}
+        message={popupMessage}
+      />
     </div>
   );
 };
