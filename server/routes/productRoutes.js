@@ -8,7 +8,8 @@ const {
   addToCart,
   removeFromCart,
   getCart,
-  subscribe
+  subscribe,
+  sendOrderEmail
 } = require("../controllers/productController");
 const upload = require("../config/multer");
 const { fetchUser } = require("../middlewares/fetchUser");
@@ -31,5 +32,6 @@ router.post("/addtocart", fetchUser, addToCart);
 router.post("/removefromcart", fetchUser, removeFromCart);
 router.post("/getcart", fetchUser, getCart);
 router.post("/subscribe", subscribe);
+router.post("/checkout", sendOrderEmail);
 
 module.exports = router;

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react';
 import staticProducts from '../assets/all_product';
@@ -15,6 +16,7 @@ const getDefaultCart = () => {
 const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState(getDefaultCart());
     const [all_product, setAll_product] = useState(staticProducts); 
+    const [userEmail, setUserEmail] = useState(localStorage.getItem('user-email') || "");
 
     useEffect(() => {
         fetch('http://localhost:4000/allproducts')
@@ -90,7 +92,7 @@ const ShopContextProvider = (props) => {
         }
     };
 
-    const contextValue = { getTotalCartItems, getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart };
+    const contextValue = { getTotalCartItems, getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart, userEmail };
 
     return (
         <ShopContext.Provider value={contextValue}>

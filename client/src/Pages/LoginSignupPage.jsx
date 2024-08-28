@@ -31,50 +31,52 @@ const LoginSignupPage = () => {
     }
 };
 
-
-  const signup = async () => {
+const signup = async () => {
     console.log("Sign up function executed", formData);
     let responseData;
     await fetch("http://localhost:4000/auth/signup", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
-      .then((data) => (responseData = data));
+        .then((response) => response.json())
+        .then((data) => (responseData = data));
 
     handleErrors(responseData);
 
     if (responseData.success) {
-      localStorage.setItem("auth-token", responseData.token);
-      window.location.replace("/");
+        localStorage.setItem("auth-token", responseData.token);
+        localStorage.setItem("user-email", formData.email); 
+        window.location.replace("/");
     }
-  };
+};
 
-  const login = async () => {
+const login = async () => {
     console.log("Login function executed", formData);
     let responseData;
     await fetch("http://localhost:4000/auth/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
-      .then((data) => (responseData = data));
+        .then((response) => response.json())
+        .then((data) => (responseData = data));
 
     handleErrors(responseData);
 
     if (responseData.success) {
-      localStorage.setItem("auth-token", responseData.token);
-      window.location.replace("/");
+        localStorage.setItem("auth-token", responseData.token);
+        localStorage.setItem("user-email", formData.email); 
+        window.location.replace("/");
     }
-  };
+};
+
 
   return (
     <div className="login">
