@@ -53,6 +53,7 @@ const NavbarComponent = () => {
                 {localStorage.getItem('auth-token') ? (
                     <button onClick={() => {
                         localStorage.removeItem('auth-token');
+                        localStorage.removeItem('user-email');
                         window.location.replace('/');
                     }}>
                         Logout

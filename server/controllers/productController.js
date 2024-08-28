@@ -99,11 +99,11 @@ const subscribe = async (req, res) => {
   }
 
   const msg = {
-    to: "mehmedayt8@gmail.com",
+    to: email,
     from: "mehmed_ayt@abv.bg",
-    subject: "New Newsletter Subscription",
-    text: `New user subscribed: ${email}`,
-  };
+    subject: "Thank You for Subscribing!",
+    text: `Hello, \n\nThank you for subscribing to our newsletter! You'll now receive the latest updates, promotions, and news directly in your inbox.\n\nBest regards,\nYour Team`,
+};
 
   try {
     await sgMail.send(msg);
@@ -113,34 +113,39 @@ const subscribe = async (req, res) => {
     res.status(500).send("Error subscribing");
   }
 };
-
 const sendOrderEmail = async (req, res) => {
-  try {
-    let email = req.body.email;
-    let productNames = "";
-    let price = 0;
-    for (let i = 0; i <= req.body.cartItems.length; i++) {
-      if (req.body.cartItems[i]) {
-        productNames += " + " + req.body.cartItems[i]?.name;
-        price += req.body.cartItems[i]?.total;
+    try {
+      let email = req.body.email;
+      let productNames = "";
+      let price = 0;
+  
+      if (!Array.isArray(req.body.cartItems) || req.body.cartItems.length === 0) {
+        return res.status(400).json({ success: false, message: "Cart is empty" });
       }
+  
+      for (let i = 0; i < req.body.cartItems.length; i++) { 
+            if (req.body.cartItems[i]) {
+          productNames += " + " + req.body.cartItems[i]?.name;
+          price += req.body.cartItems[i]?.total;
+        }
+      }
+  
+      const msg = {
+        to: email,
+        from: "mehmed_ayt@abv.bg", 
+        subject: "Order Confirmation",
+        text: `Thank you for your order! Here are the details:\n\n${productNames}\n\nTotal Amount: $${price}\n\nOur team will get in touch with you shortly to finalize the process.`,
+      };
+  
+      await sgMail.send(msg);
+  
+      res.status(200).json({ success: true, message: "Order placed!" });
+    } catch (error) {
+      console.error("Error sending order email:", error);
+      res.status(500).json({ success: false, message: "Error processing order" });
     }
-
-    const msg = {
-      to: email,
-      from: "mehmed_ayt@abv.bg",
-      subject: "Order Confirmation",
-      text: `Thank you for your order! Here are the details:\n\n${productNames}\n\nTotal Amount: $${price}`,
-    };
-
-    await sgMail.send(msg);
-    res.status(200).send("Order placed and email sent successfully");
-  } catch (error) {
-    console.error("Error sending order email:", error);
-    res.status(500).send("Error processing order");
-  }
-};
-
+  };
+  
 module.exports = {
   addProduct,
   removeProduct,

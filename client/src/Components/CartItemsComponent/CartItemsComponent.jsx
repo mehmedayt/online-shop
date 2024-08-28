@@ -30,7 +30,7 @@ const CartItemsComponent = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                email: userEmail, // Имейлът на потребителя, извлечен от контекста
+                email: userEmail, 
                 cartItems: cartItemsList,
                 totalAmount: getTotalCartAmount(),
             }),
@@ -42,7 +42,7 @@ const CartItemsComponent = () => {
 
         const result = await response.json();
         if (result.success) {
-            alert('Order confirmation sent!');
+            alert('Order placed!');
         } else {
             alert('Failed to send order confirmation');
         }
