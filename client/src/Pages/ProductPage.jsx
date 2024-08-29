@@ -15,7 +15,7 @@ const ProductPage = () => {
         <div>
             <BreadcrumsComponent product={product}/>
             <ProductDisplayComponent product={product} />
-            <DescriptionBoxComponent />
+            <DescriptionBoxComponent product={product} />
             <RelatedProductsComponent />
         </div>
     );

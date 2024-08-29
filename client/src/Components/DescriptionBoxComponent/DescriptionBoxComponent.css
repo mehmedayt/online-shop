@@ -26,6 +26,25 @@
     padding: 48px;
     padding-bottom: 70px;
 }
+
+.rating-stars {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.star {
+    color: grey;
+    margin-right: 5px;
+}
+
+.star.selected {
+    color: gold;
+}
+
+.average-rating {
+    margin-top: 10px;
+}
+
 @media(max-width:1280px){
     .description{
         margin: 60px;
