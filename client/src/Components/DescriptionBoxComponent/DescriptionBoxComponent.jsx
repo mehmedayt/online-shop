@@ -6,6 +6,8 @@ import './DescriptionBoxComponent.css';
 const DescriptionBoxComponent = ({product}) => {
     const [showDescription, setShowDescription] = useState(true);
     const [userEmail, setUserEmail] = useState('');
+    const [averageRating, setAverageRating] = useState(product.averageRating || 0);
+    const [ratings, setRatings] = useState(product.ratings || []);
 
     useEffect(() => {
         const email = localStorage.getItem('user-email') || '';
@@ -17,32 +19,34 @@ const DescriptionBoxComponent = ({product}) => {
             alert('Please ensure your name and email are stored in local storage.');
             return;
         }
-
-        console.log(product);
-        console.log(rating);
         
-        
+          try {
+            const response = await fetch('http://localhost:4000/submit-rating', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    productId: product?._id,
+                    userEmail,
+                    rating
+                })
+            });
 
-        //   try {
-        //     const response = await fetch('/submit-rating', {
-        //         method: 'POST',
-        //         headers: { 'Content-Type': 'application/json' },
-        //         body: JSON.stringify({
-        //             productId: product?.id,
-        //             userEmail,
-        //             rating
-        //         })
-        //     });
+            if (!response.ok) {
+                throw new Error('Failed to submit rating');
+            }
 
-        //     if (!response.ok) {
-        //         throw new Error('Failed to submit rating');
-        //     }
-
+            const newRatings = [...ratings, { userEmail, rating }];
+            const totalRating = newRatings.reduce((acc, r) => acc + r.rating, 0);
+            const newAverageRating = totalRating / newRatings.length;
+    
+            setRatings(newRatings);
+            setAverageRating(newAverageRating);
           
-        // } catch (error) {
-        //     console.error(error);
-        //     alert('Failed to submit rating');
-        // }
+        } catch (error) {
+            console.error(error);
+            alert('Failed to submit rating');
+        }
+
 
     };
 
@@ -59,7 +63,7 @@ const DescriptionBoxComponent = ({product}) => {
                 className={`description-nav-box ${!showDescription ? 'active' : ''}`} 
                 onClick={() => setShowDescription(false)}
             >
-                Reviews 122
+                Reviews ({ratings.length})
             </div>
         </div>
         {showDescription ? (
@@ -69,17 +73,18 @@ const DescriptionBoxComponent = ({product}) => {
         ) : (
             <div className="rating-section">
                 <div className="rating-stars">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                        <span
-                            key={star}
-                            className={`star ${star <= 'selected' ? 'selected' : ''}`}
-                            onClick={() => handleRatingClick(star)}
-                        >
+                {[1, 2, 3, 4, 5].map((star) => (
+                             <span
+                                 key={star}
+                                 className={`star ${star <= averageRating ? 'selected' : ''}`}
+                                 onClick={() => handleRatingClick(star)}
+                             >
                             &#9733;
                         </span>
                     ))}
                 </div>
-                <div className="average-rating">Average Rating: 2</div>
+                <div className="average-rating">Average Rating: {averageRating.toFixed(1)}</div>
+                
             </div>
         )}
     </div>

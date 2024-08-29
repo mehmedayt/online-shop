@@ -32,7 +32,14 @@ const ProductSchema = new mongoose.Schema({
     available: {
         type: Boolean,
         default: true,
-    }
+    },
+    ratings: [
+        {
+            userEmail: String,
+            rating: { type: Number, min: 1, max: 5 },
+            createdAt: { type: Date, default: Date.now }
+        }
+    ]
 });
 
 const Product = mongoose.model("Product", ProductSchema);

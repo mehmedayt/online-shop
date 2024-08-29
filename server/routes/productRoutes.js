@@ -9,7 +9,8 @@ const {
   removeFromCart,
   getCart,
   subscribe,
-  sendOrderEmail
+  sendOrderEmail,
+  submitRating
 } = require("../controllers/productController");
 const upload = require("../config/multer");
 const { fetchUser } = require("../middlewares/fetchUser");
@@ -33,5 +34,6 @@ router.post("/removefromcart", fetchUser, removeFromCart);
 router.post("/getcart", fetchUser, getCart);
 router.post("/subscribe", subscribe);
 router.post("/checkout", sendOrderEmail);
+router.post("/submit-rating", submitRating);
 
 module.exports = router;

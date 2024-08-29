@@ -145,6 +145,35 @@ const sendOrderEmail = async (req, res) => {
       res.status(500).json({ success: false, message: "Error processing order" });
     }
   };
+
+  const submitRating = async (req, res) => {
+    const { productId, userEmail, rating } = req.body;
+    
+    try {
+      const product = await Product.findById(productId);
+      if (!product) {
+            return res.status(404).send('Product not found');
+        }
+        
+        const existingRatingIndex = product.ratings.findIndex(r => r.userEmail === userEmail);
+        if (existingRatingIndex !== -1) {
+
+          product.ratings[existingRatingIndex].rating = rating;
+        } else {
+
+          product.ratings.push({ userEmail, rating });
+        }
+
+        await product.save();
+        
+        const totalRating = product.ratings.reduce((acc, r) => acc + r.rating, 0);
+        const averageRating = product.ratings.length ? totalRating / product.ratings.length : 0;
+        
+        res.json({ averageRating });
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
+};
   
 module.exports = {
   addProduct,
@@ -157,4 +186,5 @@ module.exports = {
   getCart,
   subscribe,
   sendOrderEmail,
+  submitRating
 };
