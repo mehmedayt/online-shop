@@ -52,6 +52,11 @@
     gap: 45px;
 }
 
+.nav-profile-icon {
+    width: 35px; 
+    height: auto;
+}
+
 .nav-login-cart button {
     width: 157px;
     height: 58px;
@@ -134,6 +139,18 @@
         width: 18px;
         height: 18px;
     }
+    .nav-login-cart button {
+        width: 80px;
+        height: 35px;
+        font-size: 14px;
+    }
+    .nav-login-cart img {
+        width: 30px;
+    }
+    .nav-cart-count {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 @media(max-width: 800px) {
@@ -160,6 +177,9 @@
     }
     .nav-dropdown.open {
         transform: rotate(90deg);
+    }
+    .nav-login-cart img {
+        width: 25px; 
     }
 }
 

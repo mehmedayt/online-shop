@@ -11,6 +11,7 @@ import ShopCategoryPage from './Pages/ShopCategoryPage';
 import ProductPage from './Pages/ProductPage';
 import CartPage from './Pages/CartPage';
 import LoginSignupPage from './Pages/LoginSignupPage';
+import ProfilePage from './Pages/ProfilePage';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           </Route>
           <Route path='/cart' element={<CartPage/>}/>
           <Route path='/login' element={<LoginSignupPage/>}/>
+          <Route path='/profile' element={<ProfilePage/>}/>
       </Routes>
       </BrowserRouter>
       <Footer/>

@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import './NavbarComponent.css';
 import logo from '../../assets/logo.png';
 import cart_icon from '../../assets/cart_icon.png';
+import profile_icon from '../../assets/profile_icon.png';
 import { ShopContext } from '../../Context/ShopContext';
 
 const NavbarComponent = () => {
@@ -47,6 +48,8 @@ const NavbarComponent = () => {
                     >
                         Kids
                     </NavLink>
+
+                    
                 </li>
             </ul>
             <div className="nav-login-cart">
@@ -63,6 +66,9 @@ const NavbarComponent = () => {
                         <button>Login</button>
                     </Link>
                 )}
+                <Link to='/profile'> 
+                    <img src={profile_icon} alt="Profile Icon" className="nav-profile-icon" />
+                </Link>
                 <Link to='/cart'>
                     <img src={cart_icon} alt="Cart Icon" />
                 </Link>
