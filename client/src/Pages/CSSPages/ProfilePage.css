@@ -1,0 +1,104 @@
+.profile {
+    width: 100%;
+    min-height: 80vh;
+    background: #f3f3f3;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-container {
+    width: 580px;
+    background: white;
+    padding: 40px 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h1 {
+    margin-bottom: 30px;
+}
+
+.profile-container p {
+    margin-bottom: 10px;
+}
+
+
+.profile-section {
+    margin-bottom: 40px;
+}
+
+.profile-section h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.profile-section input {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border: 1px solid #c9c9c9;
+    outline: none;
+    color: #5c5c5c;
+    font-size: 16px;
+}
+
+.profile-container button {
+    width: 100%;
+    height: 50px;
+    color: white;
+    background: #ff4141;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.profile-container .delete-account {
+    background: #ff0000;
+}
+
+@media (max-width: 1280px) {
+    .profile-container {
+        width: auto;
+        max-width: 500px;
+        padding: 30px 50px;
+    }
+
+    .profile-section h2 {
+        font-size: 20px;
+    }
+
+    .profile-section input {
+        height: 45px;
+    }
+
+    .profile-container button {
+        height: 45px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 800px) {
+    .profile-container {
+        padding: 20px 30px;
+    }
+
+    .profile-container h1 {
+        font-size: 24px;
+    }
+
+    .profile-section h2 {
+        font-size: 18px;
+    }
+
+    .profile-section input {
+        height: 40px;
+    }
+
+    .profile-container button {
+        height: 40px;
+        font-size: 16px;
+    }
+}
