@@ -1,6 +1,7 @@
 import './CSSPages/ProfilePage.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PopUpComponent from '../Components/PopUpComponent/PopUpComponent';
+import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
     const [formData, setFormData] = useState({
@@ -14,6 +15,13 @@ const ProfilePage = () => {
     const [popupTitle, setPopupTitle] = useState('');
     const [confirmDelete, setConfirmDelete] = useState(false);
 
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!localStorage.getItem('auth-token')) {
+            navigate('/login');
+        }
+    }, [navigate]);
 
     const changeHandler = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
