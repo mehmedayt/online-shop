@@ -10,87 +10,102 @@ const ProfilePage = () => {
     });
 
     const [showPopup, setShowPopup] = useState(false);
-        const [popupMessage, setPopupMessage] = useState('');
-        const [popupTitle, setPopupTitle] = useState('');
-    
-        const changeHandler = (e) => {
-            setFormData({ ...formData, [e.target.name]: e.target.value });
-        };
-    
-        const handleUpdatePassword = async () => {
-            if (formData.newPassword !== formData.confirmPassword) {
-                setPopupTitle('Error');
-                setPopupMessage('New passwords do not match.');
-                setShowPopup(true);
-                return;
-            }
+    const [popupMessage, setPopupMessage] = useState('');
+    const [popupTitle, setPopupTitle] = useState('');
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
 
-            const response = await fetch('http://localhost:4000/auth/changePassword', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('auth-token')
-                },
-                body: JSON.stringify({
-                    currentPassword: formData.currentPassword,
-                    newPassword: formData.newPassword
-                })
-            });
-        
-            const data = await response.json();
-        
-            if (data.success) {
-                setFormData({ 
-                    currentPassword: '',
-                    newPassword: '',
-                    confirmPassword: '',
-                });
-                setPopupTitle('Success');
-                setPopupMessage('Your password has been updated successfully.');
-            } else {
-                setFormData({ 
-                    currentPassword: '',
-                    newPassword: '',
-                    confirmPassword: '',
-                });
+    const changeHandler = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-
-                setPopupTitle('Error');
-                setPopupMessage(data.message || 'There was a problem updating your password.');
-            }
-        
+    const handleUpdatePassword = async () => {
+        if (formData.newPassword !== formData.confirmPassword) {
+            setPopupTitle('Error');
+            setPopupMessage('New passwords do not match.');
             setShowPopup(true);
-        };
-        
-        const handleDeleteAccount = async () => {
-            try {
-                const response = await fetch('http://localhost:4000/auth/deleteAccount', {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': localStorage.getItem('auth-token')
-                    }
-                });
-    
-                const data = await response.json();
-    
-                if (data.success) {
-                    setPopupTitle('Account Deleted');
-                    setPopupMessage('Your account has been deleted successfully.');
-                    localStorage.removeItem('auth-token');
-                } else {
-                    setPopupTitle('Error');
-                    setPopupMessage(data.message || 'There was a problem deleting your account.');
+            return;
+        }
+
+        const response = await fetch('http://localhost:4000/auth/changePassword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('auth-token')
+            },
+            body: JSON.stringify({
+                currentPassword: formData.currentPassword,
+                newPassword: formData.newPassword
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            setFormData({ 
+                currentPassword: '',
+                newPassword: '',
+                confirmPassword: '',
+            });
+            setPopupTitle('Success');
+            setPopupMessage('Your password has been updated successfully.');
+        } else {
+            setFormData({ 
+                currentPassword: '',
+                newPassword: '',
+                confirmPassword: '',
+            });
+
+            setPopupTitle('Error');
+            setPopupMessage(data.message || 'There was a problem updating your password.');
+        }
+
+        setShowPopup(true);
+    };
+
+    const handleDeleteAccount = async () => {
+        if (!confirmDelete) {
+            setPopupTitle('Confirm Deletion');
+            setPopupMessage('Are you sure you want to delete your account? This action cannot be undone.\n Press enter to confirm!');
+            setShowPopup(true);
+            setConfirmDelete(true);
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:4000/auth/deleteAccount', {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': localStorage.getItem('auth-token')
                 }
-            } catch (error) {
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setPopupTitle('Account Deleted');
+                setPopupMessage('Your account has been deleted successfully.');
+                localStorage.removeItem('user-email');
+                localStorage.removeItem('auth-token');
+                setShowPopup(true);
+                
+                setTimeout(() => {
+                        window.location.replace('/');
+                    
+                }, 2000);
+            } else {
                 setPopupTitle('Error');
-                setPopupMessage('An error occurred while deleting your account.');
-            } finally {
+                setPopupMessage(data.message || 'There was a problem deleting your account.');
                 setShowPopup(true);
             }
-        };
-    
-
+        } catch (error) {
+            setPopupTitle('Error');
+            setPopupMessage('An error occurred while deleting your account.');
+            setShowPopup(true);
+        } finally {
+            setConfirmDelete(false);
+        }
+    };
 
     return (
         <div className="profile">
@@ -146,7 +161,6 @@ const ProfilePage = () => {
                 title={popupTitle}
                 message={popupMessage}
             />
-          
         </div>
     );
 };

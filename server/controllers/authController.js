@@ -92,5 +92,19 @@ exports.changePassword = async(req, res) => {
 exports.deleteAccount = async (req, res) => {
     console.log('from controller');
     
-  
+    try {
+        const userId = req.user.id;
+
+        const deletedUser = await User.findByIdAndDelete(userId);
+
+        
+        if (!deletedUser) {
+            return res.status(404).json({ success: false, message: "User not found." });
+        }
+
+        res.json({ success: true, message: "User account deleted successfully." });
+    } catch (error) {
+        console.error("Error deleting account:", error);
+        res.status(500).json({ success: false, message: "Error deleting account." });
+    }
 };
