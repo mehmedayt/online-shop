@@ -55,7 +55,7 @@ const ProfilePage = () => {
                     confirmPassword: '',
                 });
 
-                
+
                 setPopupTitle('Error');
                 setPopupMessage(data.message || 'There was a problem updating your password.');
             }
@@ -63,6 +63,32 @@ const ProfilePage = () => {
             setShowPopup(true);
         };
         
+        const handleDeleteAccount = async () => {
+            try {
+                const response = await fetch('http://localhost:4000/auth/deleteAccount', {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': localStorage.getItem('auth-token')
+                    }
+                });
+    
+                const data = await response.json();
+    
+                if (data.success) {
+                    setPopupTitle('Account Deleted');
+                    setPopupMessage('Your account has been deleted successfully.');
+                    localStorage.removeItem('auth-token');
+                } else {
+                    setPopupTitle('Error');
+                    setPopupMessage(data.message || 'There was a problem deleting your account.');
+                }
+            } catch (error) {
+                setPopupTitle('Error');
+                setPopupMessage('An error occurred while deleting your account.');
+            } finally {
+                setShowPopup(true);
+            }
+        };
     
 
 
@@ -109,7 +135,7 @@ const ProfilePage = () => {
 
                 <div className="profile-section">
                     <h2>Danger Zone</h2>
-                    <button className="delete-account">
+                    <button className="delete-account" onClick={handleDeleteAccount}>
                         Delete Account
                     </button>
                 </div>
@@ -126,37 +152,3 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
-
-// const handleDeleteAccount = () => {
-//     // Входната точка за заявка за изтриване на акаунт
-//     console.log('Delete account');
-//     setPopupTitle('Account Deletion');
-//     setPopupMessage('Your account has been deleted successfully.');
-//     setShowPopup(true);
-// };
-
-//                 <div className="profile-section">
-//                     <h2>Account Information</h2>
-//                     <input
-//                         name="username"
-//                         value={formData.username}
-//                         onChange={changeHandler}
-//                         type="text"
-//                         placeholder="Change Username"
-//                     />
-//                     <p>Email: user@example.com</p>
-//                 </div>
-
-//                 <div className="profile-section">
-//                     <h2>Danger Zone</h2>
-//                     <button className="delete-account" onClick={handleDeleteAccount}>
-//                         Delete Account
-//                     </button>
-//                 </div>
-//             </div>
-
-//         </div>
-//     );
-// };
-
-// export default ProfilePage;

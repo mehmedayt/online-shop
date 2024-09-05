@@ -88,3 +88,9 @@ exports.changePassword = async(req, res) => {
         res.status(500).json({ success: false, message: 'Server error.' });
     }
 }
+
+exports.deleteAccount = async (req, res) => {
+    console.log('from controller');
+    
+  
+};
