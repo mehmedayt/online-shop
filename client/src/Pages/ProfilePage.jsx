@@ -54,6 +54,8 @@ const ProfilePage = () => {
                     newPassword: '',
                     confirmPassword: '',
                 });
+
+                
                 setPopupTitle('Error');
                 setPopupMessage(data.message || 'There was a problem updating your password.');
             }
