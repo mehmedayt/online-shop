@@ -18,7 +18,8 @@ The application is divided into three main components:
 
   - User registration and login with secure authentication.
   - Password hashing using bcrypt and JWT for session management.
-  - Password change can securely update your password, with instant feedback via pop-up messages.
+  - Password change functionality with secure password updates and instant feedback via pop-up messages.
+  - User account deletion with confirmation prompt, redirecting to the login page if the user is not authenticated.
 
 - **Shopping Cart:**
 
