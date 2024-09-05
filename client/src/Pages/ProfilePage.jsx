@@ -152,7 +152,7 @@ const ProfilePage = () => {
                         type="text"
                         placeholder="Change Username"
                     />
-                    <p>Email: user@example.com</p>
+                    <p>Email: {localStorage.getItem('user-email')}</p>
                     <button>Update Username</button>
                 </div>
 
