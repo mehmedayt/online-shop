@@ -89,6 +89,36 @@ exports.changePassword = async(req, res) => {
     }
 }
 
+exports.changeEmail = async (req, res) => {
+    try {
+        const { currentEmail, newEmail } = req.body;
+
+        if (currentEmail === newEmail) {
+            return res.status(400).json({ success: false, message: 'New email cannot be the same as the current email.' });
+        }
+
+        const existingUser = await User.findOne({ email: newEmail });
+        if (existingUser) {
+            return res.status(400).json({ success: false, message: 'This email is already associated with another account.' });
+        }
+
+        const user = await User.findById(req.user.id);
+        if (!user || user.email !== currentEmail) {
+            return res.status(400).json({ success: false, message: 'Current email does not match our records.' });
+        }
+
+        user.email = newEmail;
+        await user.save();
+
+        res.json({ success: true, message: 'Email updated successfully.' });
+    } catch (error) {
+        console.error("Error updating email:", error);
+        res.status(500).json({ success: false, message: 'Server error.' });
+    }
+};
+
+
+
 exports.deleteAccount = async (req, res) => {
     console.log('from controller');
     

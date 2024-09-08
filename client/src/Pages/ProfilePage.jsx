@@ -8,6 +8,7 @@ const ProfilePage = () => {
         currentPassword: '',
         newPassword: '',
         confirmPassword: '',
+        email: '',
     });
 
     const [showPopup, setShowPopup] = useState(false);
@@ -70,6 +71,37 @@ const ProfilePage = () => {
 
         setShowPopup(true);
     };
+
+    const handleUpdateEmail = async () => {
+                const response = await fetch('http://localhost:4000/auth/changeEmail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem('auth-token')
+                    },
+                    body: JSON.stringify({
+                        currentEmail: localStorage.getItem('user-email'),
+                        newEmail: formData.email
+                    })
+                });
+        
+                const data = await response.json();
+        
+                if (data.success) {
+                    localStorage.setItem('user-email', formData.email);
+                    setPopupTitle('Success');
+                    setPopupMessage('Your email has been updated successfully.');
+                    setFormData({
+                        ...formData,
+                        email: ''
+                    });
+                } else {
+                    setPopupTitle('Error');
+                    setPopupMessage(data.message || 'There was a problem updating your email.');
+                }
+        
+                setShowPopup(true);
+            };
 
     const handleDeleteAccount = async () => {
         if (!confirmDelete) {
@@ -146,15 +178,17 @@ const ProfilePage = () => {
                 </div>
 
                 <div className="profile-section">
-                    <h2>Account Information</h2>
-                    <input
-                        name="username"
-                        type="text"
-                        placeholder="Change Username"
-                    />
-                    <p>Email: {localStorage.getItem('user-email')}</p>
-                    <button>Update Username</button>
-                </div>
+                         <h2>Account Information</h2>
+                         <input
+                             name="email"
+                             type="text"
+                             value={formData.email}
+                             onChange={changeHandler}
+                             placeholder="Change Email"
+                         />
+                     <p>Email: {localStorage.getItem('user-email')}</p>
+                     <button onClick={handleUpdateEmail}>Update Email</button>
+                 </div>
 
                 <div className="profile-section">
                     <h2>Danger Zone</h2>
