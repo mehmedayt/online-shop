@@ -138,6 +138,9 @@ Here are some screenshots of the client-side interface of the application:
 
 5. **Shopping Cart**
    <img alt="project-photo" src="./admin/public/home-cart.png" />
+  
+6. **Profile Page**
+   <img alt="project-photo" src="./admin/public/home-profile.png" />  
 
 ### **Admin Panel**
 
