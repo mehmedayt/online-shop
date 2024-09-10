@@ -25,81 +25,79 @@ const AddProduct = () => {
     setImage(e.target.files[0]);
   };
 
+  const showPopupMessage = (title, message) => {
+    setPopupTitle(title);
+    setPopupMessage(message);
+    setShowPopup(true);
+  };
+
+  const clearForm = () => {
+    setProductDetails({
+      name: "",
+      image: "",
+      category: "women",
+      new_price: "",
+      old_price: ""
+    });
+    setImage(null);
+  };
+
+  const uploadImage = async (image) => {
+    let formData = new FormData();
+    formData.append('product', image);
+
+    const response = await fetch('http://localhost:4000/upload', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: formData,
+    });
+
+    const data = await response.json();
+    return data;
+  };
+
   const handleErrors = (responseData) => {
     if (!responseData.success) {
-      setPopupTitle("Error");
-      setPopupMessage(responseData.errors);
-      setShowPopup(true);
-      
-      setProductDetails({
-        name: "",
-        image: "",
-        category: "women",
-        new_price: "",
-        old_price: ""
-      });
-      setImage(null);
+      showPopupMessage("Error", responseData.errors);
+      clearForm();
     }
   };
 
-  const Add_Product = async () => {
-    console.log(productDetails);
-
-    let resData;
+  const addProduct = async () => {
     let product = { ...productDetails };
 
-    let formData = new FormData();
     if (image) {
-      formData.append('product', image);
+      const resData = await uploadImage(image);
 
-      await fetch('http://localhost:4000/upload', {
+      if (!resData.success) {
+        handleErrors(resData);
+        return;
+      }
+
+      product.image = resData.image_url;
+
+      const response = await fetch('http://localhost:4000/addproduct', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: formData,
-      }).then((res) => res.json()).then((data) => { resData = data; });
+        body: JSON.stringify(product),
+      });
 
-      handleErrors(resData);
+      const data = await response.json();
+      handleErrors(data);
 
-      if (resData.success) {
-        product.image = resData.image_url;
-        console.log(product);
-
-        await fetch('http://localhost:4000/addproduct', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(product),
-        }).then((res) => res.json()).then((data) => {
-          handleErrors(data);
-
-          if (data.success) {
-            setPopupTitle("Success");
-            setPopupMessage("Product Added Successfully");
-            setShowPopup(true);
-
-            setProductDetails({
-              name: "",
-              image: "",
-              category: "women",
-              new_price: "",
-              old_price: ""
-            });
-            setImage(null);
-          } else {
-            setPopupTitle("Failed");
-            setPopupMessage("Failed to Add Product");
-            setShowPopup(true);
-          }
-        });
+      if (data.success) {
+        showPopupMessage("Success", "Product Added Successfully");
+        clearForm();
+      } else {
+        showPopupMessage("Failed", "Failed to Add Product");
       }
     } else {
-      setPopupTitle("Warning");
-      setPopupMessage('Please upload an image.');
-      setShowPopup(true);
+      showPopupMessage("Warning", "Please upload an image.");
     }
   };
 
@@ -166,7 +164,7 @@ const AddProduct = () => {
           hidden
         />
       </div>
-      <button onClick={Add_Product} className='product-btn'>ADD</button>
+      <button onClick={addProduct} className='product-btn'>ADD</button>
 
       <Popup 
         show={showPopup} 
