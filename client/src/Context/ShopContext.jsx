@@ -70,7 +70,6 @@ const ShopContextProvider = (props) => {
                 body: JSON.stringify({ itemId }),
             })
                 .then((response) => response.json())
-                .then((data) => console.log(data))
                 .catch((error) => console.error('Error removing from cart:', error));
         }
     };
@@ -87,7 +86,6 @@ const ShopContextProvider = (props) => {
                 body: JSON.stringify({ itemId }),
             })
                 .then((response) => response.json())
-                .then((data) => console.log(data))
                 .catch((error) => console.error('Error adding to cart:', error));
         }
     };

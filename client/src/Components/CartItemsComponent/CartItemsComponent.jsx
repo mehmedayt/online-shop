@@ -13,23 +13,19 @@ const CartItemsComponent = () => {
     userEmail,
   } = useContext(ShopContext);
 
-  // Състояния за Pop-Up
   const [showPopup, setShowPopup] = useState(false);
   const [popupTitle, setPopupTitle] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
 
   const handleCheckout = async () => {
-    const cartItemsList = all_product.map((e) => {
-      if (cartItems[e.id] > 0) {
-        return {
-          name: e.name,
-          price: e.new_price,
-          quantity: cartItems[e.id],
-          total: e.new_price * cartItems[e.id],
-        };
-      }
-      return null;
-    }).filter(item => item !== null);
+    const cartItemsList = all_product
+      .filter((e) => cartItems[e.id] > 0)  
+      .map((e) => ({
+        name: e.name,
+        price: e.new_price,
+        quantity: cartItems[e.id],
+        total: e.new_price * cartItems[e.id],
+      }));
 
     try {
       const response = await fetch('http://localhost:4000/checkout', {

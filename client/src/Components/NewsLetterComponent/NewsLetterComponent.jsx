@@ -19,7 +19,6 @@ const NewsLetterComponent = () => {
                 body: JSON.stringify({ email }),
             });
 
-            console.log(response);
             if (response.ok) {
                 setPopupTitle('Success');
                 setPopupMessage('Subscription successful!');
