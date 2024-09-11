@@ -1,5 +1,4 @@
 import './App.css';
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/NavbarComponent/NavbarComponent';
 import Footer from './Components/FooterComponent/FooterComponent';
@@ -13,26 +12,29 @@ import CartPage from './Pages/CartPage';
 import LoginSignupPage from './Pages/LoginSignupPage';
 import ProfilePage from './Pages/ProfilePage';
 
-function App() {
+const appRoutes = {
+  home: { path: '/', element: <ShopPage /> },
+  mens: { path: '/mens', element: <ShopCategoryPage banner={men_banner} category="men" /> },
+  womens: { path: '/womens', element: <ShopCategoryPage banner={women_banner} category="women" /> },
+  kids: { path: '/kids', element: <ShopCategoryPage banner={kid_banner} category="kid" /> },
+  product: { path: '/product/:productId', element: <ProductPage /> },
+  cart: { path: '/cart', element: <CartPage /> },
+  login: { path: '/login', element: <LoginSignupPage /> },
+  profile: { path: '/profile', element: <ProfilePage /> }
+};
 
+function App() {
   return (
     <div>
       <BrowserRouter>
-      <Navbar/>
-      <Routes>
-      <Route path='/' element={<ShopPage/>} />
-      <Route path='/mens' element={<ShopCategoryPage banner={men_banner} category="men"/>}/>
-          <Route path='/womens' element={<ShopCategoryPage  banner={women_banner} category="women"/>}/>
-          <Route path='/kids' element={<ShopCategoryPage  banner={kid_banner} category="kid"/>}/>
-          <Route path="/product" element={<ProductPage/>}>
-            <Route path=':productId' element={<ProductPage/>}/>
-          </Route>
-          <Route path='/cart' element={<CartPage/>}/>
-          <Route path='/login' element={<LoginSignupPage/>}/>
-          <Route path='/profile' element={<ProfilePage/>}/>
-      </Routes>
+        <Navbar />
+        <Routes>
+          {Object.values(appRoutes).map((route, index) => (
+            <Route key={index} path={route.path} element={route.element} />
+          ))}
+        </Routes>
       </BrowserRouter>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
