@@ -1,18 +1,21 @@
+
+/* eslint-disable no-unused-vars */
 import "./NewCollectionsComponent.css";
 import Item from "../ItemComponent/ItemComponent";
 import { useEffect, useState } from "react";
-import new_collections from "../../assets/new_collections";
 
 const NewCollectionsComponent = () => {
     const [newCollection, setNewCollection] = useState([]);
     
     useEffect(() => {
         fetch('http://localhost:4000/newcollection')
-        .then((response) => response.json())
-        .then((data) => {
-            const combinedCollections = [...new_collections, ...data];
-            setNewCollection(combinedCollections);
-        });
+            .then((response) => response.json())
+            .then((data) => {
+                const shuffled = data.sort(() => 0.5 - Math.random());
+                const selected = shuffled.slice(0, 8);
+                setNewCollection(selected);
+            })
+            .catch((error) => console.error('Error fetching new collections:', error));
     }, []);
   
     return (
@@ -20,10 +23,10 @@ const NewCollectionsComponent = () => {
             <h1>NEW COLLECTIONS</h1>
             <hr />
             <div className="ourcollections">
-                {newCollection.map((item, i) => (
+                {newCollection.map((item) => (
                     <Item
-                        key={i}
-                        id={item.id}
+                        key={item._id}
+                        id={item._id}
                         name={item.name}
                         image={item.image}
                         new_price={item.new_price}

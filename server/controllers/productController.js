@@ -47,6 +47,31 @@ const getAllProducts = async (req, res) => {
   res.send(products);
 };
 
+const relatedProducts = async (req, res) => {
+  try {
+    const { productId } = req.params; 
+
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+
+    const relatedProducts = await Product.find({
+      category: product.category,
+      _id: { $ne: productId },
+    }).limit(4); 
+
+    res.status(200).json(relatedProducts);
+  } catch (error) {
+    console.error("Error fetching related products:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching related products",
+    });
+  }
+};
+
 const getNewCollection = async (req, res) => {
   let products = await Product.find({});
   let newcollection = products.slice(1).slice(-8);
@@ -62,14 +87,15 @@ const getPopular = async (req, res) => {
 };
 
 const addToCart = async (req, res) => {
-  console.log("added", req.body.itemId);
+  
   let userData = await User.findOne({ _id: req.user.id });
+  
   userData.cartData[req.body.itemId] += 1;
   await User.findOneAndUpdate(
     { _id: req.user.id },
     { cartData: userData.cartData }
   );
-  res.send("Added");
+  res.status(200).json({ success: true, message: "Item added to cart" });   
 };
 
 const removeFromCart = async (req, res) => {
@@ -81,7 +107,7 @@ const removeFromCart = async (req, res) => {
     { _id: req.user.id },
     { cartData: userData.cartData }
   );
-  res.send("Removed");
+  res.status(200).json({ success: true, message: "Item removed from cart" });   
 };
 
 const getCart = async (req, res) => {
@@ -186,5 +212,6 @@ module.exports = {
   getCart,
   subscribe,
   sendOrderEmail,
-  submitRating
+  submitRating,
+  relatedProducts
 };

@@ -1,13 +1,13 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import "./CartItemsComponent.css";
 import { ShopContext } from "../../Context/ShopContext";
 import remove_icon from "../../assets/cart_cross_icon.png";
-import PopUpComponent from "../PopUpComponent/PopUpComponent"; 
+import PopUpComponent from "../PopUpComponent/PopUpComponent";
 
 const CartItemsComponent = () => {
   const {
     getTotalCartAmount,
-    all_product,
+    allProducts,
     cartItems,
     removeFromCart,
     userEmail,
@@ -17,15 +17,19 @@ const CartItemsComponent = () => {
   const [popupTitle, setPopupTitle] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
 
+  useEffect(() => {
+  }, [allProducts, cartItems]);
+
   const handleCheckout = async () => {
-    const cartItemsList = all_product
-      .filter((e) => cartItems[e.id] > 0)  
-      .map((e) => ({
-        name: e.name,
-        price: e.new_price,
-        quantity: cartItems[e.id],
-        total: e.new_price * cartItems[e.id],
+    const cartItemsList = allProducts
+      .filter((product) => cartItems[product._id] > 0)
+      .map((product) => ({
+        name: product.name,
+        price: product.new_price,
+        quantity: cartItems[product._id],
+        total: product.new_price * cartItems[product._id],
       }));
+
 
     try {
       const response = await fetch('http://localhost:4000/checkout', {
@@ -57,6 +61,16 @@ const CartItemsComponent = () => {
     }
   };
 
+  if (!allProducts || allProducts.length === 0) {
+    return <div>No products found in the cart.</div>;
+  }
+
+  const hasItems = Object.values(cartItems).some(count => count > 0);
+
+  if (!hasItems) {
+    return <div>Your cart is empty.</div>;
+  }
+
   return (
     <div className="cartitem">
       <div className="cartitem-format-main">
@@ -68,20 +82,20 @@ const CartItemsComponent = () => {
         <p>Remove</p>
       </div>
       <hr />
-      {all_product.map((e) => {
-        if (cartItems[e.id] > 0) {
+      {allProducts.map((product) => {
+        if (cartItems[product._id] > 0) {
           return (
-            <div key={e.id}>
+            <div key={product._id}>
               <div className="cartitem-format cartitem-format-main">
-                <img src={e.image} alt="" className="carticon-product-icon" />
-                <p>{e.name}</p>
-                <p>${e.new_price}</p>
-                <button className="cartitem-quantity">{cartItems[e.id]}</button>
-                <p>${e.new_price * cartItems[e.id]}</p>
+                <img src={product.image} alt="" className="carticon-product-icon" />
+                <p>{product.name}</p>
+                <p>${product.new_price}</p>
+                <button className="cartitem-quantity">{cartItems[product._id]}</button>
+                <p>${product.new_price * cartItems[product._id]}</p>
                 <img
                   className="cartitem-remove-icon"
                   src={remove_icon}
-                  onClick={() => removeFromCart(e.id)}
+                  onClick={() => removeFromCart(product._id)}
                   alt="Remove Icon"
                 />
               </div>
@@ -120,7 +134,7 @@ const CartItemsComponent = () => {
           </div>
         </div>
       </div>
-      
+
       <PopUpComponent
         show={showPopup}
         handleClose={() => setShowPopup(false)}

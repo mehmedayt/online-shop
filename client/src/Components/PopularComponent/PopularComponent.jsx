@@ -1,7 +1,7 @@
 import './PopularComponent.css';
 import Item from "../ItemComponent/ItemComponent";
 import { useEffect, useState } from "react";
-import data_product from "../../assets/data";
+
 const PopularComponent = () => {
     const [popularProducts, setPopularProducts] = useState([]);
 
@@ -9,9 +9,11 @@ const PopularComponent = () => {
         fetch('http://localhost:4000/popularinwomen')
             .then((response) => response.json())
             .then((data) => {
-                const combinedProducts = [...data_product, ...data];
-                setPopularProducts(combinedProducts);
-            });
+                const shuffled = data.sort(() => 0.5 - Math.random());
+                const selected = shuffled.slice(0, 4);
+                setPopularProducts(selected);
+            })
+            .catch((error) => console.error('Error fetching popular products:', error));
     }, []);
     
     return (
@@ -19,10 +21,10 @@ const PopularComponent = () => {
             <h1>POPULAR IN WOMEN</h1>
             <hr />
             <div className="pop-item">
-                {popularProducts.map((item, i) => (
+                {popularProducts.map((item) => (
                     <Item
-                        key={i}
-                        id={item.id}
+                        key={item._id}
+                        id={item._id}
                         name={item.name}
                         image={item.image}
                         new_price={item.new_price}

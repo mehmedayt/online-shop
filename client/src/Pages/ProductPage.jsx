@@ -7,18 +7,25 @@ import DescriptionBoxComponent from "../Components/DescriptionBoxComponent/Descr
 import RelatedProductsComponent from "../Components/RelatedProductsComponent/RelatedProductsComponent";
 
 const ProductPage = () => {
+    const { allProducts } = useContext(ShopContext); 
+    const { productId } = useParams();
 
-    const {all_product} = useContext(ShopContext);
-    const {productId} = useParams();
-    const product = all_product.find((e)=> e.id === Number(productId));
+    const product = allProducts.find((e) => e._id === productId);
+
     return (
         <div>
-            <BreadcrumsComponent product={product}/>
-            <ProductDisplayComponent product={product} />
-            <DescriptionBoxComponent product={product} />
-            <RelatedProductsComponent />
+            {product ? (
+                <>
+                    <BreadcrumsComponent product={product} />
+                    <ProductDisplayComponent product={product} />
+                    <DescriptionBoxComponent product={product} />
+                    <RelatedProductsComponent />
+                </>
+            ) : (
+                <p>Product not found</p> 
+            )}
         </div>
     );
 };
 
-export default ProductPage ;
+export default ProductPage;

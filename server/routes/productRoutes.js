@@ -10,7 +10,8 @@ const {
   getCart,
   subscribe,
   sendOrderEmail,
-  submitRating
+  submitRating,
+  relatedProducts
 } = require("../controllers/productController");
 const upload = require("../config/multer");
 const { fetchUser } = require("../middlewares/fetchUser");
@@ -28,6 +29,7 @@ router.post("/addproduct", addProduct);
 router.post("/removeproduct", removeProduct);
 router.get("/allproducts", getAllProducts);
 router.get("/newcollection", getNewCollection);
+router.get("/relatedproducts/:productId", relatedProducts); 
 router.get("/popularinwomen", getPopular);
 router.post("/addtocart", fetchUser, addToCart);
 router.post("/removefromcart", fetchUser, removeFromCart);

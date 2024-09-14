@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const ProductSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: true,  
-    },
     name: {
         type: String,
         required: true,  
@@ -32,6 +28,10 @@ const ProductSchema = new mongoose.Schema({
     available: {
         type: Boolean,
         default: true,
+    },
+    description: {
+        type: String,
+        default: "High-quality, comfortable, and stylish clothing designed for everyday wear.",
     },
     ratings: [
         {

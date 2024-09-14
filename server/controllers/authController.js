@@ -12,10 +12,7 @@ exports.signup = async (req, res) => {
         }
 
         let cart = {};
-        for (let i = 0; i < 300; i++) {
-            cart[i] = 0;
-        };
-
+       
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
