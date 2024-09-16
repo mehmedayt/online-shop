@@ -1,0 +1,10 @@
+{
+    "name": "root",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+      "start": "npm --prefix server start",
+      "heroku-postbuild": "npm install --prefix server"
+    }
+  }
+  
