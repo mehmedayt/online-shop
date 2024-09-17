@@ -10,7 +10,7 @@ const ListProduct = () => {
 
     const fetchInfo = useCallback(async () => {
         try {
-            const res = await fetch('http://localhost:4000/allproducts');
+            const res = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/allproducts');
             const data = await res.json();
             setAllproducts(data);
         } catch (error) {
@@ -25,7 +25,7 @@ const ListProduct = () => {
 
     const removeProduct = async () => {
         try {
-            await fetch('http://localhost:4000/removeproduct', {
+            await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/removeproduct', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

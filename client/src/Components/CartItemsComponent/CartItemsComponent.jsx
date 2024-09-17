@@ -32,7 +32,7 @@ const CartItemsComponent = () => {
 
 
     try {
-      const response = await fetch('http://localhost:4000/checkout', {
+      const response = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

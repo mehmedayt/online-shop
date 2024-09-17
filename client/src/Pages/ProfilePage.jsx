@@ -36,7 +36,7 @@ const ProfilePage = () => {
             return;
         }
 
-        const response = await fetch('http://localhost:4000/auth/changePassword', {
+        const response = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/auth/changePassword', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const ProfilePage = () => {
     };
 
     const handleUpdateEmail = async () => {
-                const response = await fetch('http://localhost:4000/auth/changeEmail', {
+                const response = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/auth/changeEmail', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ const ProfilePage = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:4000/auth/deleteAccount', {
+            const response = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/auth/deleteAccount', {
                 method: 'DELETE',
                 headers: {
                     'Authorization': localStorage.getItem('auth-token')

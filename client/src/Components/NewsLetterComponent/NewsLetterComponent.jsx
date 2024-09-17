@@ -11,7 +11,7 @@ const NewsLetterComponent = () => {
 
     const handleSubscribe = async () => {
         try {
-            const response = await fetch('http://localhost:4000/subscribe', {
+            const response = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

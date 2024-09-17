@@ -46,7 +46,7 @@ const AddProduct = () => {
     let formData = new FormData();
     formData.append('product', image);
 
-    const response = await fetch('http://localhost:4000/upload', {
+    const response = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/upload', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -78,7 +78,7 @@ const AddProduct = () => {
 
       product.image = resData.image_url;
 
-      const response = await fetch('http://localhost:4000/addproduct', {
+      const response = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/addproduct', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

@@ -9,7 +9,7 @@ const RelatedProductsComponent = () => {
     const { productId } = useParams(); 
 
     useEffect(() => {
-        fetch(`http://localhost:4000/relatedproducts/${productId}`)
+        fetch(`https://e-commerce-react-db6a14093668.herokuapp.com/relatedproducts/${productId}`)
             .then((response) => response.json())
             .then((data) => {
                 setRelatedProducts(data);

@@ -6,7 +6,7 @@ const PopularComponent = () => {
     const [popularProducts, setPopularProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:4000/popularinwomen')
+        fetch('https://e-commerce-react-db6a14093668.herokuapp.com/popularinwomen')
             .then((response) => response.json())
             .then((data) => {
                 const shuffled = data.sort(() => 0.5 - Math.random());

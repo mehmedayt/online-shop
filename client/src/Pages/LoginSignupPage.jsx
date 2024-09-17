@@ -33,7 +33,7 @@ const LoginSignupPage = () => {
 
 const signup = async () => {
     let responseData;
-    await fetch("http://localhost:4000/auth/signup", {
+    await fetch("https://e-commerce-react-db6a14093668.herokuapp.com/auth/signup", {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -55,7 +55,7 @@ const signup = async () => {
 
 const login = async () => {
     let responseData;
-    await fetch("http://localhost:4000/auth/login", {
+    await fetch("https://e-commerce-react-db6a14093668.herokuapp.com/auth/login", {
         method: "POST",
         headers: {
             Accept: "application/json",

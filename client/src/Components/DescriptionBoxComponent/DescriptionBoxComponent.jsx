@@ -16,7 +16,7 @@ const DescriptionBoxComponent = ({ product = {} }) => {
         }
 
         try {
-            const response = await fetch('http://localhost:4000/submit-rating', {
+            const response = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/submit-rating', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

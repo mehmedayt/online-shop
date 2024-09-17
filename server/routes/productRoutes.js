@@ -21,7 +21,7 @@ const PORT = 4000;
 router.post("/upload", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `http://localhost:${PORT}/images/${req.file.filename}`,
+    image_url: `https://e-commerce-react-db6a14093668.herokuapp.com/images/${req.file.filename}`,
   });
 });
 

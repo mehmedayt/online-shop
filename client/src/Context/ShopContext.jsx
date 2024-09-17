@@ -16,7 +16,7 @@ const ShopContextProvider = (props) => {
     const [userEmail, setUserEmail] = useState(localStorage.getItem('user-email') || "");
 
     useEffect(() => {
-        fetch('http://localhost:4000/allproducts')
+        fetch('https://e-commerce-react-db6a14093668.herokuapp.com/allproducts')
             .then((response) => response.json())
             .then((data) => {
                 setAllProducts(data);
@@ -26,7 +26,7 @@ const ShopContextProvider = (props) => {
             .catch((error) => console.error('Error fetching products:', error));
 
         if (localStorage.getItem('auth-token')) {
-            fetch('http://localhost:4000/getcart', {
+            fetch('https://e-commerce-react-db6a14093668.herokuapp.com/getcart', {
                 method: 'POST',
                 headers: {
                     'auth-token': `${localStorage.getItem('auth-token')}`,
@@ -58,7 +58,7 @@ const ShopContextProvider = (props) => {
         setCartItems((prev) => {
             const updatedCart = { ...prev, [itemId]: Math.max(0, prev[itemId] - 1) };
             if (localStorage.getItem('auth-token')) {
-                fetch('http://localhost:4000/removefromcart', {
+                fetch('https://e-commerce-react-db6a14093668.herokuapp.com/removefromcart', {
                     method: 'POST',
                     headers: {
                         'auth-token': `${localStorage.getItem('auth-token')}`,
@@ -77,7 +77,7 @@ const ShopContextProvider = (props) => {
         setCartItems((prev) => {
             const updatedCart = { ...prev, [itemId]: (prev[itemId] || 0) + 1 };
             if (localStorage.getItem('auth-token')) {
-                fetch('http://localhost:4000/addtocart', {
+                fetch('https://e-commerce-react-db6a14093668.herokuapp.com/addtocart', {
                     method: 'POST',
                     headers: {
                         'auth-token': `${localStorage.getItem('auth-token')}`,
