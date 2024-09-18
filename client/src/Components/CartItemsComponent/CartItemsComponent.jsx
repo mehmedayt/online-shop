@@ -32,7 +32,7 @@ const CartItemsComponent = () => {
 
 
     try {
-      const response = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/checkout', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/checkout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

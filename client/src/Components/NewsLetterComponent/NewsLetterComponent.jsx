@@ -11,7 +11,7 @@ const NewsLetterComponent = () => {
 
     const handleSubscribe = async () => {
         try {
-            const response = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/subscribe', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/subscribe`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

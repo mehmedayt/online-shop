@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+
 import { createContext, useEffect, useState } from 'react';
 
 export const ShopContext = createContext(null);
@@ -15,8 +16,10 @@ const ShopContextProvider = (props) => {
     const [allProducts, setAllProducts] = useState([]);
     const [userEmail, setUserEmail] = useState(localStorage.getItem('user-email') || "");
 
+
     useEffect(() => {
-        fetch('https://e-commerce-react-db6a14093668.herokuapp.com/allproducts')
+        fetch(`${import.meta.env.VITE_API_URL}/allproducts`)
+
             .then((response) => response.json())
             .then((data) => {
                 setAllProducts(data);
@@ -26,7 +29,7 @@ const ShopContextProvider = (props) => {
             .catch((error) => console.error('Error fetching products:', error));
 
         if (localStorage.getItem('auth-token')) {
-            fetch('https://e-commerce-react-db6a14093668.herokuapp.com/getcart', {
+            fetch(`${import.meta.env.VITE_API_URL}/getcart`, {
                 method: 'POST',
                 headers: {
                     'auth-token': `${localStorage.getItem('auth-token')}`,
@@ -58,7 +61,7 @@ const ShopContextProvider = (props) => {
         setCartItems((prev) => {
             const updatedCart = { ...prev, [itemId]: Math.max(0, prev[itemId] - 1) };
             if (localStorage.getItem('auth-token')) {
-                fetch('https://e-commerce-react-db6a14093668.herokuapp.com/removefromcart', {
+                fetch(`${import.meta.env.VITE_API_URL}/removefromcart`, {
                     method: 'POST',
                     headers: {
                         'auth-token': `${localStorage.getItem('auth-token')}`,
@@ -77,7 +80,7 @@ const ShopContextProvider = (props) => {
         setCartItems((prev) => {
             const updatedCart = { ...prev, [itemId]: (prev[itemId] || 0) + 1 };
             if (localStorage.getItem('auth-token')) {
-                fetch('https://e-commerce-react-db6a14093668.herokuapp.com/addtocart', {
+                fetch(`${import.meta.env.VITE_API_URL}/addtocart`, {
                     method: 'POST',
                     headers: {
                         'auth-token': `${localStorage.getItem('auth-token')}`,

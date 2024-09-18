@@ -8,7 +8,7 @@ const NewCollectionsComponent = () => {
     const [newCollection, setNewCollection] = useState([]);
     
     useEffect(() => {
-        fetch('https://e-commerce-react-db6a14093668.herokuapp.com/newcollection')
+        fetch(`${import.meta.env.VITE_API_URL}/newcollection`)
             .then((response) => response.json())
             .then((data) => {
                 const shuffled = data.sort(() => 0.5 - Math.random());

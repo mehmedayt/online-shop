@@ -10,7 +10,7 @@ const ListProduct = () => {
 
     const fetchInfo = useCallback(async () => {
         try {
-            const res = await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/allproducts');
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/allproducts`);
             const data = await res.json();
             setAllproducts(data);
         } catch (error) {
@@ -25,7 +25,7 @@ const ListProduct = () => {
 
     const removeProduct = async () => {
         try {
-            await fetch('https://e-commerce-react-db6a14093668.herokuapp.com/removeproduct', {
+            await fetch(`${import.meta.env.VITE_API_URL}/removeproduct`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

@@ -6,7 +6,7 @@ const PopularComponent = () => {
     const [popularProducts, setPopularProducts] = useState([]);
 
     useEffect(() => {
-        fetch('https://e-commerce-react-db6a14093668.herokuapp.com/popularinwomen')
+        fetch(`${import.meta.env.VITE_API_URL}/popularinwomen`)
             .then((response) => response.json())
             .then((data) => {
                 const shuffled = data.sort(() => 0.5 - Math.random());

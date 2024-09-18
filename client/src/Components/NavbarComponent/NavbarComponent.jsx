@@ -18,7 +18,6 @@ const NavbarComponent = () => {
             <ul className="nav-menu">
                 <li>
                     <NavLink 
-                        exact 
                         to="/" 
                         className={({ isActive }) => (isActive ? 'active' : '')}
                     >
@@ -48,8 +47,6 @@ const NavbarComponent = () => {
                     >
                         Kids
                     </NavLink>
-
-                    
                 </li>
             </ul>
             <div className="nav-login-cart">
