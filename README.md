@@ -2,6 +2,8 @@
 
 This is a full-stack e-commerce web application developed using React JS for the front-end and Node.js, Express, and MongoDB for the back-end. The application includes user authentication, shopping cart functionality, order management, and an admin panel for product management.
 
+## Live Demo [here](https://mehmedayt.github.io/online-shop/)
+
 ## Project Structure
 
 The application is divided into three main components:
