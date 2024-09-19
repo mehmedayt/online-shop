@@ -26,7 +26,7 @@ const appRoutes = {
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename="/online-shop"> {/* Настройка на basename */}
         <Navbar />
         <Routes>
           {Object.values(appRoutes).map((route, index) => (

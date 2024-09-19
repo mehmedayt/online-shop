@@ -61,16 +61,6 @@ const CartItemsComponent = () => {
     }
   };
 
-  if (!allProducts || allProducts.length === 0) {
-    return <div>No products found in the cart.</div>;
-  }
-
-  const hasItems = Object.values(cartItems).some(count => count > 0);
-
-  if (!hasItems) {
-    return <div>Your cart is empty.</div>;
-  }
-
   return (
     <div className="cartitem">
       <div className="cartitem-format-main">
