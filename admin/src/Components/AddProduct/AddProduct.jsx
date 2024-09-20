@@ -6,6 +6,7 @@ import Popup from '../Popup/Popup';
 const AddProduct = () => {
   const [productDetails, setProductDetails] = useState({
     name: "",
+    description: "",  // Добавяме поле за описание
     image: "",
     category: "women",
     new_price: "",
@@ -34,6 +35,7 @@ const AddProduct = () => {
   const clearForm = () => {
     setProductDetails({
       name: "",
+      description: "",  // Изчистваме и полето за описание
       image: "",
       category: "women",
       new_price: "",
@@ -46,7 +48,7 @@ const AddProduct = () => {
     let formData = new FormData();
     formData.append('product', image);
 
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/upload`, {
+    const response = await fetch(`https://e-commerce-react-db6a14093668.herokuapp.com/upload`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -78,7 +80,7 @@ const AddProduct = () => {
 
       product.image = resData.image_url;
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/addproduct`, {
+      const response = await fetch(`https://e-commerce-react-db6a14093668.herokuapp.com/addproduct`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -104,7 +106,7 @@ const AddProduct = () => {
   return (
     <div className='add-product'>
       <div className="product-itemfield">
-        <p>Product title</p>
+        <p>Product Title</p>
         <input
           value={productDetails.name}
           onChange={changeHandler}
@@ -113,6 +115,19 @@ const AddProduct = () => {
           placeholder='Type here'
         />
       </div>
+
+      {/* Добавено поле за описание */}
+      <div className="product-itemfield">
+        <p>Product Description</p>
+        <textarea
+          value={productDetails.description}
+          onChange={changeHandler}
+          name="description"
+          placeholder='Type here'
+          className='product-textarea'
+        />
+      </div>
+
       <div className="product-price">
         <div className="product-itemfield">
           <p>Price</p>
@@ -153,7 +168,7 @@ const AddProduct = () => {
           <img
             src={image ? URL.createObjectURL(image) : upload_area}
             className="product-thumbnail-img"
-            alt=""
+            alt="Upload Thumbnail"
           />
         </label>
         <input
