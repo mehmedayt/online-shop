@@ -3,6 +3,7 @@ import "./CartItemsComponent.css";
 import { ShopContext } from "../../Context/ShopContext";
 import remove_icon from "../../assets/cart_cross_icon.png";
 import PopUpComponent from "../PopUpComponent/PopUpComponent";
+import { postRequest } from "../../utils/requester"; 
 
 const CartItemsComponent = () => {
   const {
@@ -17,8 +18,7 @@ const CartItemsComponent = () => {
   const [popupTitle, setPopupTitle] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
 
-  useEffect(() => {
-  }, [allProducts, cartItems]);
+  useEffect(() => {}, [allProducts, cartItems]);
 
   const handleCheckout = async () => {
     const cartItemsList = allProducts
@@ -30,21 +30,13 @@ const CartItemsComponent = () => {
         total: product.new_price * cartItems[product._id],
       }));
 
-
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/checkout`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: userEmail,
-          cartItems: cartItemsList,
-          totalAmount: getTotalCartAmount(),
-        }),
+      const result = await postRequest('/checkout', {
+        email: userEmail,
+        cartItems: cartItemsList,
+        totalAmount: getTotalCartAmount(),
       });
 
-      const result = await response.json();
       if (result.success) {
         setPopupTitle('Order Placed');
         setPopupMessage('Your order has been successfully placed!');
