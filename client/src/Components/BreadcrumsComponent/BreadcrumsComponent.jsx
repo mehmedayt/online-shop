@@ -2,7 +2,6 @@
 import './BreadcrumsComponent.css';
 import arrow_icon from '../../assets/breadcrum_arrow.png';
 
-// Define constants for HOME and SHOP
 const HOME = "HOME";
 const SHOP = "SHOP";
 

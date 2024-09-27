@@ -1,15 +1,14 @@
-
 /* eslint-disable no-unused-vars */
 import "./NewCollectionsComponent.css";
 import Item from "../ItemComponent/ItemComponent";
 import { useEffect, useState } from "react";
+import { getRequest } from "../../utils/requester";
 
 const NewCollectionsComponent = () => {
     const [newCollection, setNewCollection] = useState([]);
-    
+
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/newcollection`)
-            .then((response) => response.json())
+        getRequest('/newcollection')
             .then((data) => {
                 const shuffled = data.sort(() => 0.5 - Math.random());
                 const selected = shuffled.slice(0, 8);
@@ -17,7 +16,7 @@ const NewCollectionsComponent = () => {
             })
             .catch((error) => console.error('Error fetching new collections:', error));
     }, []);
-  
+
     return (
         <div className="ournewcollections">
             <h1>NEW COLLECTIONS</h1>
