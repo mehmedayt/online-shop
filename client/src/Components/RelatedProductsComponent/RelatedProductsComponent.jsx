@@ -1,23 +1,26 @@
-
 import './RelatedProductsComponent.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; 
 import Item from '../ItemComponent/ItemComponent';
+import { getRequest } from '../../utils/requester';
 
 const RelatedProductsComponent = () => {
     const [relatedProducts, setRelatedProducts] = useState([]);
     const { productId } = useParams(); 
 
     useEffect(() => {
-        fetch(`https://e-commerce-react-db6a14093668.herokuapp.com/relatedproducts/${productId}`)
-            .then((response) => response.json())
-            .then((data) => {
+        const fetchRelatedProducts = async () => {
+            try {
+                const data = await getRequest(`/relatedproducts/${productId}`);
                 setRelatedProducts(data);
-            })
-            .catch((error) => console.error('Error fetching related products:', error));
+            } catch (error) {
+                console.error('Error fetching related products:', error);
+            }
+        };
+
+        fetchRelatedProducts();
     }, [productId]); 
     
-
     return (
         <div className='related'>
             <h1>Related Products</h1>
