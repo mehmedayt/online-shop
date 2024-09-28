@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState, useContext } from 'react';
 import './DescriptionBoxComponent.css';
 import { ShopContext } from '../../Context/ShopContext';
+import { postRequest } from '../../utils/requester'; 
 
 const DescriptionBoxComponent = ({ product = {} }) => {
     const [showDescription, setShowDescription] = useState(true);
@@ -16,19 +18,11 @@ const DescriptionBoxComponent = ({ product = {} }) => {
         }
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/submit-rating`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    productId: product._id || '',
-                    userEmail,
-                    rating
-                })
+            const response = await postRequest('/submit-rating', {
+                productId: product._id || '',
+                userEmail,
+                rating
             });
-
-            if (!response.ok) {
-                throw new Error('Failed to submit rating');
-            }
 
             const newRatings = [...ratings, { userEmail, rating }];
             const totalRating = newRatings.reduce((acc, r) => acc + r.rating, 0);
