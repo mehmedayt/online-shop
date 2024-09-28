@@ -1,19 +1,24 @@
 import './PopularComponent.css';
 import Item from "../ItemComponent/ItemComponent";
 import { useEffect, useState } from "react";
+import { getRequest } from '../../utils/requester'; 
 
 const PopularComponent = () => {
     const [popularProducts, setPopularProducts] = useState([]);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/popularinwomen`)
-            .then((response) => response.json())
-            .then((data) => {
+        const fetchPopularProducts = async () => {
+            try {
+                const data = await getRequest('/popularinwomen');
                 const shuffled = data.sort(() => 0.5 - Math.random());
                 const selected = shuffled.slice(0, 4);
                 setPopularProducts(selected);
-            })
-            .catch((error) => console.error('Error fetching popular products:', error));
+            } catch (error) {
+                console.error('Error fetching popular products:', error);
+            }
+        };
+
+        fetchPopularProducts();
     }, []);
     
     return (
