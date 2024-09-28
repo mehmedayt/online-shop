@@ -1,7 +1,7 @@
 import './NewsLetterComponent.css';
 import { useState } from 'react';
 import PopUpComponent from '../PopUpComponent/PopUpComponent';
-
+import { postRequest } from '../../utils/requester'; 
 
 const NewsLetterComponent = () => {
     const [email, setEmail] = useState('');
@@ -11,15 +11,9 @@ const NewsLetterComponent = () => {
 
     const handleSubscribe = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/subscribe`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email }),
-            });
+            const response = await postRequest('/subscribe', { email });
 
-            if (response.ok) {
+            if (response) {
                 setPopupTitle('Success');
                 setPopupMessage('Subscription successful!');
             } else {
