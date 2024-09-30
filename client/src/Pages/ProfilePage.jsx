@@ -2,7 +2,7 @@ import './CSSPages/ProfilePage.css';
 import { useEffect, useState } from 'react';
 import PopUpComponent from '../Components/PopUpComponent/PopUpComponent';
 import { useNavigate } from 'react-router-dom';
-
+import { postRequest, request } from '../utils/requester'; 
 const ProfilePage = () => {
     const [formData, setFormData] = useState({
         currentPassword: '',
@@ -36,72 +36,60 @@ const ProfilePage = () => {
             return;
         }
 
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/changePassword`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('auth-token')
-            },
-            body: JSON.stringify({
+        try {
+            const responseData = await postRequest('/auth/changePassword', {
                 currentPassword: formData.currentPassword,
                 newPassword: formData.newPassword
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            setFormData({ 
-                currentPassword: '',
-                newPassword: '',
-                confirmPassword: '',
-            });
-            setPopupTitle('Success');
-            setPopupMessage('Your password has been updated successfully.');
-        } else {
-            setFormData({ 
-                currentPassword: '',
-                newPassword: '',
-                confirmPassword: '',
+            }, {
+                'Authorization': localStorage.getItem('auth-token')
             });
 
+            if (responseData.success) {
+                setFormData({
+                    currentPassword: '',
+                    newPassword: '',
+                    confirmPassword: '',
+                });
+                setPopupTitle('Success');
+                setPopupMessage('Your password has been updated successfully.');
+            } else {
+                setPopupTitle('Error');
+                setPopupMessage(responseData.message || 'There was a problem updating your password.');
+            }
+        } catch (error) {
             setPopupTitle('Error');
-            setPopupMessage(data.message || 'There was a problem updating your password.');
+            setPopupMessage('An error occurred while updating your password.');
         }
-
         setShowPopup(true);
     };
 
     const handleUpdateEmail = async () => {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/changeEmail`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': localStorage.getItem('auth-token')
-                    },
-                    body: JSON.stringify({
-                        currentEmail: localStorage.getItem('user-email'),
-                        newEmail: formData.email
-                    })
+        try {
+            const responseData = await postRequest('/auth/changeEmail', {
+                currentEmail: localStorage.getItem('user-email'),
+                newEmail: formData.email
+            }, {
+                'Authorization': localStorage.getItem('auth-token')
+            });
+
+            if (responseData.success) {
+                localStorage.setItem('user-email', formData.email);
+                setPopupTitle('Success');
+                setPopupMessage('Your email has been updated successfully.');
+                setFormData({
+                    ...formData,
+                    email: ''
                 });
-        
-                const data = await response.json();
-        
-                if (data.success) {
-                    localStorage.setItem('user-email', formData.email);
-                    setPopupTitle('Success');
-                    setPopupMessage('Your email has been updated successfully.');
-                    setFormData({
-                        ...formData,
-                        email: ''
-                    });
-                } else {
-                    setPopupTitle('Error');
-                    setPopupMessage(data.message || 'There was a problem updating your email.');
-                }
-        
-                setShowPopup(true);
-            };
+            } else {
+                setPopupTitle('Error');
+                setPopupMessage(responseData.message || 'There was a problem updating your email.');
+            }
+        } catch (error) {
+            setPopupTitle('Error');
+            setPopupMessage('An error occurred while updating your email.');
+        }
+        setShowPopup(true);
+    };
 
     const handleDeleteAccount = async () => {
         if (!confirmDelete) {
@@ -113,29 +101,22 @@ const ProfilePage = () => {
         }
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/deleteAccount`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': localStorage.getItem('auth-token')
-                }
+            const responseData = await request('/auth/deleteAccount', 'DELETE', null, {
+                'Authorization': localStorage.getItem('auth-token')
             });
 
-            const data = await response.json();
-
-            if (data.success) {
+            if (responseData.success) {
                 setPopupTitle('Account Deleted');
                 setPopupMessage('Your account has been deleted successfully.');
                 localStorage.removeItem('user-email');
                 localStorage.removeItem('auth-token');
                 setShowPopup(true);
-                
                 setTimeout(() => {
-                        window.location.replace('/');
-                    
+                    window.location.replace('/');
                 }, 2000);
             } else {
                 setPopupTitle('Error');
-                setPopupMessage(data.message || 'There was a problem deleting your account.');
+                setPopupMessage(responseData.message || 'There was a problem deleting your account.');
                 setShowPopup(true);
             }
         } catch (error) {
@@ -178,17 +159,17 @@ const ProfilePage = () => {
                 </div>
 
                 <div className="profile-section">
-                         <h2>Account Information</h2>
-                         <input
-                             name="email"
-                             type="text"
-                             value={formData.email}
-                             onChange={changeHandler}
-                             placeholder="Change Email"
-                         />
-                     <p>Email: {localStorage.getItem('user-email')}</p>
-                     <button onClick={handleUpdateEmail}>Update Email</button>
-                 </div>
+                    <h2>Account Information</h2>
+                    <input
+                        name="email"
+                        type="text"
+                        value={formData.email}
+                        onChange={changeHandler}
+                        placeholder="Change Email"
+                    />
+                    <p>Email: {localStorage.getItem('user-email')}</p>
+                    <button onClick={handleUpdateEmail}>Update Email</button>
+                </div>
 
                 <div className="profile-section">
                     <h2>Danger Zone</h2>

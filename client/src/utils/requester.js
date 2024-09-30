@@ -28,3 +28,5 @@ const request = async (url, method = 'GET', data = null, headers = {}) => {
 export const getRequest = (url, headers = {}) => request(url, 'GET', null, headers);
 
 export const postRequest = (url, data, headers = {}) => request(url, 'POST', data, headers);
+
+export { request };
