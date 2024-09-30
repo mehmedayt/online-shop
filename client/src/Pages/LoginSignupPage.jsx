@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./CSSPages/LoginSignupPage.css";
 import PopUpComponent from '../Components/PopUpComponent/PopUpComponent';
+import { postRequest } from '../utils/requester';
 
 const LoginSignupPage = () => {
   const [formData, setFormData] = useState({
@@ -20,124 +21,106 @@ const LoginSignupPage = () => {
 
   const handleErrors = (responseData) => {
     if (!responseData.success) {
-        setPopupTitle("Error");
-        setPopupMessage(responseData.errors);
-        setShowPopup(true);
-        setFormData({
-            username: "",
-            password: "",
-            email: "",
-        });
+      setPopupTitle("Error");
+      setPopupMessage(responseData.errors);
+      setShowPopup(true);
+      setFormData({
+        username: "",
+        password: "",
+        email: "",
+      });
     }
-};
+  };
 
-const signup = async () => {
-    let responseData;
-    await fetch("https://e-commerce-react-db6a14093668.herokuapp.com/auth/signup", {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-    })
-        .then((response) => response.json())
-        .then((data) => (responseData = data));
+  const signup = async () => {
+    try {
+      const responseData = await postRequest("/auth/signup", formData);
+      handleErrors(responseData);
 
-    handleErrors(responseData);
-
-    if (responseData.success) {
+      if (responseData.success) {
         localStorage.setItem("auth-token", responseData.token);
-        localStorage.setItem("user-email", formData.email); 
+        localStorage.setItem("user-email", formData.email);
         window.location.replace("/");
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
     }
-};
+  };
 
-const login = async () => {
-    let responseData;
-    await fetch("https://e-commerce-react-db6a14093668.herokuapp.com/auth/login", {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-    })
-        .then((response) => response.json())
-        .then((data) => (responseData = data));
+  const login = async () => {
+    try {
+      const responseData = await postRequest("/auth/login", formData);
+      handleErrors(responseData);
 
-    handleErrors(responseData);
-
-    if (responseData.success) {
+      if (responseData.success) {
         localStorage.setItem("auth-token", responseData.token);
-        localStorage.setItem("user-email", formData.email); 
+        localStorage.setItem("user-email", formData.email);
         window.location.replace("/");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
     }
-};
-
+  };
 
   return (
     <div className="login">
-        <div className="login-container">
-            <h1>{state}</h1>
-            <div className="login-fields">
-                {state === "Sign up" && (
-                    <input
-                        name="username"
-                        value={formData.username}
-                        onChange={changeHandler}
-                        type="text"
-                        placeholder="Your Name"
-                    />
-                )}
-                <input
-                    name="email"
-                    value={formData.email}
-                    onChange={changeHandler}
-                    type="email"
-                    placeholder="Email Address"
-                />
-                <input
-                    name="password"
-                    value={formData.password}
-                    onChange={changeHandler}
-                    type="password"
-                    placeholder="Password"
-                />
-            </div>
-            <button onClick={() => (state === "Login" ? login() : signup())}>
-                Continue
-            </button>
-
-            {state === "Sign up" ? (
-                <p className="login-login">
-                    Already have an account?{" "}
-                    <span onClick={() => setState("Login")}>Login here</span>
-                </p>
-            ) : (
-                <p className="login-login">
-                    Create an account?{" "}
-                    <span onClick={() => setState("Sign up")}>Click here</span>
-                </p>
-            )}
-
-            <div className="login-agree">
-                <input type="checkbox" name="" id="" />
-                <p>
-                    By continuing. I agree to the terms of use & privacy policy.
-                </p>
-            </div>
+      <div className="login-container">
+        <h1>{state}</h1>
+        <div className="login-fields">
+          {state === "Sign up" && (
+            <input
+              name="username"
+              value={formData.username}
+              onChange={changeHandler}
+              type="text"
+              placeholder="Your Name"
+            />
+          )}
+          <input
+            name="email"
+            value={formData.email}
+            onChange={changeHandler}
+            type="email"
+            placeholder="Email Address"
+          />
+          <input
+            name="password"
+            value={formData.password}
+            onChange={changeHandler}
+            type="password"
+            placeholder="Password"
+          />
         </div>
+        <button onClick={() => (state === "Login" ? login() : signup())}>
+          Continue
+        </button>
 
-        {/* Popup компонент */}
-        <PopUpComponent
-            show={showPopup}
-            handleClose={() => setShowPopup(false)}
-            title={popupTitle}
-            message={popupMessage}
-        />
+        {state === "Sign up" ? (
+          <p className="login-login">
+            Already have an account?{" "}
+            <span onClick={() => setState("Login")}>Login here</span>
+          </p>
+        ) : (
+          <p className="login-login">
+            Create an account?{" "}
+            <span onClick={() => setState("Sign up")}>Click here</span>
+          </p>
+        )}
+
+        <div className="login-agree">
+          <input type="checkbox" name="" id="" />
+          <p>By continuing, I agree to the terms of use & privacy policy.</p>
+        </div>
+      </div>
+
+      <PopUpComponent
+        show={showPopup}
+        handleClose={() => setShowPopup(false)}
+        title={popupTitle}
+        message={popupMessage}
+      />
     </div>
-);
+  );
 };
 
 export default LoginSignupPage;
