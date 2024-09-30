@@ -1,7 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
+ /* eslint-disable no-unused-vars */
+ /* eslint-disable react/prop-types */
 
 import { createContext, useEffect, useState } from 'react';
+import { getRequest, postRequest } from '../utils/requester';
 
 export const ShopContext = createContext(null);
 
@@ -16,11 +17,8 @@ const ShopContextProvider = (props) => {
     const [allProducts, setAllProducts] = useState([]);
     const [userEmail, setUserEmail] = useState(localStorage.getItem('user-email') || "");
 
-
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/allproducts`)
-
-            .then((response) => response.json())
+        getRequest('/allproducts')
             .then((data) => {
                 setAllProducts(data);
                 const productIds = data.map(product => product._id);
@@ -29,15 +27,7 @@ const ShopContextProvider = (props) => {
             .catch((error) => console.error('Error fetching products:', error));
 
         if (localStorage.getItem('auth-token')) {
-            fetch(`${import.meta.env.VITE_API_URL}/getcart`, {
-                method: 'POST',
-                headers: {
-                    'auth-token': `${localStorage.getItem('auth-token')}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({}),
-            })
-                .then((response) => response.json())
+            postRequest('/getcart', {}, { 'auth-token': localStorage.getItem('auth-token') })
                 .then((data) => setCartItems(data))
                 .catch((error) => console.error('Error fetching cart:', error));
         }
@@ -60,18 +50,12 @@ const ShopContextProvider = (props) => {
     const removeFromCart = (itemId) => {
         setCartItems((prev) => {
             const updatedCart = { ...prev, [itemId]: Math.max(0, prev[itemId] - 1) };
+
             if (localStorage.getItem('auth-token')) {
-                fetch(`${import.meta.env.VITE_API_URL}/removefromcart`, {
-                    method: 'POST',
-                    headers: {
-                        'auth-token': `${localStorage.getItem('auth-token')}`,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ itemId }),
-                })
-                    .then((response) => response.json())
+                postRequest('/removefromcart', { itemId }, { 'auth-token': localStorage.getItem('auth-token') })
                     .catch((error) => console.error('Error removing from cart:', error));
             }
+
             return updatedCart;
         });
     };
@@ -79,18 +63,12 @@ const ShopContextProvider = (props) => {
     const addToCart = (itemId) => {
         setCartItems((prev) => {
             const updatedCart = { ...prev, [itemId]: (prev[itemId] || 0) + 1 };
+
             if (localStorage.getItem('auth-token')) {
-                fetch(`${import.meta.env.VITE_API_URL}/addtocart`, {
-                    method: 'POST',
-                    headers: {
-                        'auth-token': `${localStorage.getItem('auth-token')}`,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ itemId }),
-                })
-                    .then((response) => response.json())
+                postRequest('/addtocart', { itemId }, { 'auth-token': localStorage.getItem('auth-token') })
                     .catch((error) => console.error('Error adding to cart:', error));
             }
+
             return updatedCart;
         });
     };
