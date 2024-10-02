@@ -1,26 +1,26 @@
-.nav{
+.nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 60px;
-    box-shadow: 0 1px 3px -2px #000;
-    margin-bottom: 1px;
+    padding: 0.94em 3.75em;
+    box-shadow: 0 0.06em 0.19em -0.13em #000;
+    margin-bottom: 0.06em;
     background: white;
 }
 .nav-logo {
-    width: 200px;
+    width: 12.5em;
 }
 .nav-profile {
-    width: 75px;
+    width: 4.69em;
 }
-@media(max-width:800px){
-    .navbar{
-        padding: 15px 30px;
+@media(max-width:50em) {
+    .navbar {
+        padding: 0.94em 1.88em;
     }
-    .nav-logo{
-        width: 150px ;
+    .nav-logo {
+        width: 9.38em;
     }
-    .nav-profile{
-        width: 60px;;
+    .nav-profile {
+        width: 3.75em;
     }
 }

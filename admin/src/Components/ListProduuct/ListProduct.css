@@ -3,20 +3,20 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 740px;
-    padding: 10px 50px;
-    margin: 30px;
-    border-radius: 6px;
+    height: 46.25em;
+    padding: 0.63em 3.13em;
+    margin: 1.88em;
+    border-radius: 0.38em;
     background: white;
 }
 .list-format-main {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
-    gap: 10px;
+    gap: 0.63em;
     width: 100%;
-    padding: 20px 0;
+    padding: 1.25em 0;
     color: #454545;
-    font-size: 15px;
+    font-size: 0.94em;
     font-weight: 600;
 }
 .list-format {
@@ -24,7 +24,7 @@
     font-weight: 500;
 }
 .list-product-icon {
-    height: 80px;
+    height: 5em;
 }
 .list-remove-icon {
     cursor: pointer;
@@ -35,20 +35,20 @@
     width: 100%;
 }
 
-@media(max-width:800px){
-    .list-product{
+@media(max-width:50em) {
+    .list-product {
         box-sizing: border-box;
         width: 95%;
         height: 100%;
-        padding: 10px 30px;
-        margin: 20px auto;
+        padding: 0.63em 1.88em;
+        margin: 1.25em auto;
     }
-    .list-format-main{
-        padding: 15px 0;
+    .list-format-main {
+        padding: 0.94em 0;
         color: #454545;
-        font-size: 12px;
+        font-size: 0.75em;
     }
-    .list-product-icon{
-        height: 60px;
+    .list-product-icon {
+        height: 3.75em;
     }
 }

@@ -1,10 +1,10 @@
 .side {
     display: flex;
     flex-direction: column;
-    padding-top: 30px;
-    gap: 20px;
+    padding-top: 1.88em;
+    gap: 1.25em;
     width: 100%;
-    max-width: 250px;
+    max-width: 15.63em;
     height: 100vh;
     background: white;
 }
@@ -12,23 +12,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 20px;
-    padding: 5px 10px;
-    border-radius: 6px;
+    margin: 0 1.25em;
+    padding: 0.31em 0.63em;
+    border-radius: 0.38em;
     background: #f6f6f6;
-    gap: 20px;
+    gap: 1.25em;
     cursor: pointer;
 }
-@media(max-width:800px){
-    .side{
-        padding: 30px 0;
+@media(max-width:50em) {
+    .side {
+        padding: 1.88em 0;
         flex-direction: row;
         width: 100%;
         max-width: none;
         height: auto;
         justify-content: center;
     }
-    .side-item{
+    .side-item {
         margin: 0;
     }
 }
