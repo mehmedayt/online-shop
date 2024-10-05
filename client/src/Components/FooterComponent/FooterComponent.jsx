@@ -15,7 +15,7 @@ const FooterComponent = () => {
             <ul className="foot-links">
             <li><a href="/online-shop/company">Company</a></li>
             <li><a href="/online-shop/products">Products</a></li>
-                <li>Offices</li>
+            <li><a href="/online-shop/offices">Offices</a></li>
                 <li>About</li>
                 <li>Contact</li>
             </ul>
