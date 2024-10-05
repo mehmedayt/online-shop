@@ -14,6 +14,7 @@ import ProfilePage from './Pages/ProfilePage';
 import CompanyPage from './Pages/CompanyPage';
 import ProductsPage from './Pages/ProductsPage';
 import OfficesPage from './Pages/OfficesPage';
+import AboutPage from './Pages/AboutPage';
 
 const appRoutes = {
   home: { path: '/', element: <ShopPage /> },
@@ -27,6 +28,7 @@ const appRoutes = {
   company: { path: '/company', element: <CompanyPage/> },
   products: { path: '/products', element: <ProductsPage/> },
   offices: { path: '/offices', element: <OfficesPage/> },
+  about: { path: '/about', element: <AboutPage/> },
 
 };
 
