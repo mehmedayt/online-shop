@@ -1,0 +1,37 @@
+.products {
+    padding: 2em;
+    background: #f3f3f3;
+    border-radius: 10px;
+}
+
+.products h1 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+}
+
+.products section {
+    margin-bottom: 2em;
+}
+
+.products h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.products p, .products ul {
+    font-size: 1.2em;
+}
+
+.featured-products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+}
+
+.product-item {
+    background: #ffffff;
+    padding: 1em;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+    text-align: center;
+}

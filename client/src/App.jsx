@@ -12,6 +12,7 @@ import CartPage from './Pages/CartPage';
 import LoginSignupPage from './Pages/LoginSignupPage';
 import ProfilePage from './Pages/ProfilePage';
 import CompanyPage from './Pages/CompanyPage';
+import ProductsPage from './Pages/ProductsPage';
 
 const appRoutes = {
   home: { path: '/', element: <ShopPage /> },
@@ -23,6 +24,7 @@ const appRoutes = {
   login: { path: '/login', element: <LoginSignupPage /> },
   profile: { path: '/profile', element: <ProfilePage /> },
   company: { path: '/company', element: <CompanyPage/> },
+  products: { path: '/products', element: <ProductsPage/> },
 
 };
 
