@@ -17,7 +17,7 @@ const FooterComponent = () => {
             <li><a href="/online-shop/products">Products</a></li>
             <li><a href="/online-shop/offices">Offices</a></li>
             <li><a href="/online-shop/about">About</a></li>
-                <li>Contact</li>
+            <li><a href="/online-shop/contact">Contact</a></li>
             </ul>
             <div className="foot-social-icon">
                 <div className="foot-icons-container">
