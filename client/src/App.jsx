@@ -11,6 +11,7 @@ import ProductPage from './Pages/ProductPage';
 import CartPage from './Pages/CartPage';
 import LoginSignupPage from './Pages/LoginSignupPage';
 import ProfilePage from './Pages/ProfilePage';
+import CompanyPage from './Pages/CompanyPage';
 
 const appRoutes = {
   home: { path: '/', element: <ShopPage /> },
@@ -20,13 +21,15 @@ const appRoutes = {
   product: { path: '/product/:productId', element: <ProductPage /> },
   cart: { path: '/cart', element: <CartPage /> },
   login: { path: '/login', element: <LoginSignupPage /> },
-  profile: { path: '/profile', element: <ProfilePage /> }
+  profile: { path: '/profile', element: <ProfilePage /> },
+  company: { path: '/company', element: <CompanyPage/> },
+
 };
 
 function App() {
   return (
     <div>
-      <BrowserRouter basename="/online-shop"> {/* Настройка на basename */}
+      <BrowserRouter basename="/online-shop"> {/* Setting on basename */}
         <Navbar />
         <Routes>
           {Object.values(appRoutes).map((route, index) => (

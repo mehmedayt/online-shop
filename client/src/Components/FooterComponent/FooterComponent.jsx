@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 import './FooterComponent.css';
 import footer_logo from '../../assets/logo_big.png';
 import instagram_icon from '../../assets/instagram_icon.png';
@@ -12,7 +13,7 @@ const FooterComponent = () => {
                 <p>SHOPPER</p>
             </div>
             <ul className="foot-links">
-                <li>Company</li>
+            <li><a href="/online-shop/company">Company</a></li>
                 <li>Products</li>
                 <li>Offices</li>
                 <li>About</li>
