@@ -3,77 +3,78 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 3.13em;
 }
 .foot-logo {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 1.25em;
 }
 .foot-logo p {
     color: #383838;
-    font-size: 46px;
+    font-size: 2.88em;
     font-weight: 700;
 }
 .foot-links {
     display: flex;
     list-style: none;
-    gap: 50px;
+    gap: 3.13em;
     color: #252525;
-    font-size: 20px;
+    font-size: 1.25em;
 }
 .foot-links li {
     cursor: pointer;
 }
 .foot-social-icon {
     display: flex;
-    gap: 20px;
+    gap: 1.25em;
 }
 .foot-icons-container {
-    padding: 10px;
-    padding-bottom: 6px;
+    padding: 0.63em;
+    padding-bottom: 0.38em;
     background: #fbfbfb;
-    border: 1px solid #ebebeb;
+    border: 0.06em solid #ebebeb;
 }
 .foot-copyright {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 1.88em;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 1.88em;
     color: #1a1a1a;
-    font-size: 20px;
+    font-size: 1.25em;
 }
 .foot-copyright hr {
     width: 80%;
     border: none;
-    border-radius: 10px;
-    height: 3px;
+    border-radius: 0.63em;
+    height: 0.19em;
     background: #7c7c7c;
 }
-@media(max-width:800px){
-    .foot{
-        gap: 20px;
+
+@media(max-width:800px) {
+    .foot {
+        gap: 1.25em;
     }
-    .foot-logo{
-        gap: 10px;
+    .foot-logo {
+        gap: 0.63em;
         align-items: end;
     }
-    .foot-logo img{
-        width: 40px;
+    .foot-logo img {
+        width: 2.5em;
     }
-    .foot-logo p{
-        font-size: 25px;
+    .foot-logo p {
+        font-size: 1.56em;
     }
-    .foot-links{
-        font-size: 14px;
-        gap: 10px;
+    .foot-links {
+        font-size: 0.88em;
+        gap: 0.63em;
     }
-    .foot-social-icon img{
-        width: 22px;
+    .foot-social-icon img {
+        width: 1.38em;
     }
-    .foot-copyright{
-        font-size: 13px;
+    .foot-copyright {
+        font-size: 0.81em;
     }
 }

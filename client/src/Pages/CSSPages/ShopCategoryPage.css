@@ -1,88 +1,96 @@
 .shop-banner {
     display: block;
-    margin: 30px auto;
+    margin: 1.88em auto;
     width: 82%;
 }
+
 .shop-indexSort {
     display: flex;
-    margin: 0 170px;
+    margin: 0 10.62em;
     justify-content: space-between;
     align-items: center;
 }
+
 .shop-sort {
-    padding: 10px 20px;
-    border-radius: 40px;
-    border: 1px solid #888;
+    padding: 0.62em 1.25em;
+    border-radius: 2.50em;
+    border: 0.06em solid #888;
 }
+
 .shop-indexSort span {
     font-weight: 600;
 }
+
 .shop-products {
-    margin: 20px 170px;
+    margin: 1.25em 10.62em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 80px;
+    row-gap: 5.00em;
 }
+
 .shop-loadmore {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 150px auto;
-    width: 233px;
-    height: 69px;
-    border-radius: 75px;
+    margin: 9.38em auto;
+    width: 14.56em;
+    height: 4.31em;
+    border-radius: 4.69em;
     background: #ededed;
     color: #787878;
-    font-size: 18px;
+    font-size: 1.12em;
     font-weight: 500;
 }
+
 @media(max-width:1280px){
-    .shop-banner{
-        margin: 20px auto;
+    .shop-banner {
+        margin: 1.25em auto;
         width: 90%;
     }
-    .shop-indexSort{
+    .shop-indexSort {
         width: 90%;
         margin: auto;
     }
-    .shop-sort{
-        padding: 5px 10px;
-        font-size: 12px;
+    .shop-sort {
+        padding: 0.31em 0.62em;
+        font-size: 0.75em;
     }
-    .shop-indexSort p{
-        font-size: 12px;
+    .shop-indexSort p {
+        font-size: 0.75em;
     }
-    .shop-products{
+    .shop-products {
         width: 90%;
-        margin: 10px auto;
-        row-gap: 40px;
+        margin: 0.62em auto;
+        row-gap: 2.50em;
     }
-    .shop-products .item{
+    .shop-products .item {
         margin: auto;
     }
-    .shop-loadmore{
-        margin: 10px auto;
-        width: 200px;
-        height: 60px;
-        font-size: 16px;
+    .shop-loadmore {
+        margin: 0.62em auto;
+        width: 12.50em;
+        height: 3.75em;
+        font-size: 1.00em;
     }
 }
-@media(max-width:800px){
-    .shop-banner{
+
+@media(max-width:800px) {
+    .shop-banner {
         width: 95%;
     }
-    .shop-products{
+    .shop-products {
         width: 95%;
     }
-    .shop-loadmore{
-        margin: 60px auto;
-        width: 150px;
-        height: 40px;
-        font-size: 13px;
+    .shop-loadmore {
+        margin: 3.75em auto;
+        width: 9.38em;
+        height: 2.50em;
+        font-size: 0.81em;
     }
 }
-@media(max-width:500px){
-    .shop-products{
+
+@media(max-width:500px) {
+    .shop-products {
         grid-template-columns: 1fr 1fr;
         margin-left: 2em;
     }

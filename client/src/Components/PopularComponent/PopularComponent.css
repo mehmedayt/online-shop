@@ -2,79 +2,86 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    height: 90vh;
+    gap: 0.63em;
+    height: 56.25em;
 }
+
 .pop h1 {
     color: #171717;
-    font-size: 50px;
+    font-size: 3.13em;
     font-weight: 600;
 }
+
 .pop hr {
-    width: 200px;
-    height: 6px;
-    border-radius: 10px;
+    width: 12.50em;
+    height: 0.38em;
+    border-radius: 0.63em;
     background: #252525;
 }
+
 .pop-item {
-    margin-top: 50px;
+    margin-top: 3.13em;
     display: flex;
-    gap: 30px;
+    gap: 1.88em;
 }
-@media(max-width:1280px){
-    .pop{
-        height: 70vh;
+
+@media(max-width: 1280px) {
+    .pop {
+        height: 43.75em;
     }
-    .pop h1{
-        font-size: 40px;
+    .pop h1 {
+        font-size: 2.50em;
     }
-    .pop hr{
-        width: 160px;
-        height: 4px;
+    .pop hr {
+        width: 10.00em;
+        height: 0.25em;
     }
-    .pop-item{
-        gap: 20px;
-        margin-top: 30px;
-    }
-}
-@media(max-width:1024px){
-    .pop{
-        height: 60vh;
-    }
-    .pop h1{
-        font-size: 30px;
-    }
-    .pop hr{
-        width: 120px;
-        height: 3px;
-    }
-    .pop-item{
-        gap: 15px;
-        margin-top: 20px;
+    .pop-item {
+        gap: 1.25em;
+        margin-top: 1.88em;
     }
 }
-@media(max-width:800px){
-    .pop{
-        height: 50vh;
-        gap: 6px;
+
+@media(max-width: 1024px) {
+    .pop {
+        height: 37.50em;
     }
-    .pop h1{
-        font-size: 20px;
+    .pop h1 {
+        font-size: 1.88em;
     }
-    .pop hr{
-        width: 100px;
+    .pop hr {
+        width: 7.50em;
+        height: 0.19em;
     }
-    .pop-item{
-        gap: 5px;
+    .pop-item {
+        gap: 0.94em;
+        margin-top: 1.25em;
     }
 }
-@media(max-width:500px){
-    .pop{
-        height: 90vh;
+
+@media(max-width: 800px) {
+    .pop {
+        height: 31.25em;
+        gap: 0.38em;
     }
-    .pop-item{
+    .pop h1 {
+        font-size: 1.25em;
+    }
+    .pop hr {
+        width: 6.25em;
+    }
+    .pop-item {
+        gap: 0.31em;
+    }
+}
+
+@media(max-width: 500px) {
+    .pop {
+        height: 56.25em;
+    }
+    .pop-item {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        gap: 1.25em;
     }
 }

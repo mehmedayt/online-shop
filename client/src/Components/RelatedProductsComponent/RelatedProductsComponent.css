@@ -2,79 +2,96 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    height: 90vh;
+    gap: 0.63em;
+    height: 56.25em;
 }
+
 .related h1 {
-    columns: #171717;
-    font-size: 50px;
+    color: #171717;
+    font-size: 3.13em;
     font-weight: 600;
 }
+
 .related hr {
-    width: 200px;
-    height: 6px;
-    border-radius: 10px;
+    width: 12.5em;
+    height: 0.38em;
+    border-radius: 0.63em;
     background: #252525;
 }
+
 .related-item {
-    margin-top: 50px;
+    margin-top: 3.13em;
     display: flex;
-    gap: 30px;
+    gap: 1.88em;
 }
-@media(max-width:1280px){
-    .related{
-        height: 70vh;
+
+@media(max-width:1280px) {
+    .related {
+        height: 70em;
     }
-    .related h1{
-        font-size: 40px;
+
+    .related h1 {
+        font-size: 2.5em;
     }
-    .related hr{
-        width: 160px;
-        height: 4px;
+
+    .related hr {
+        width: 10em;
+        height: 0.25em;
     }
-    .related-item{
-        gap: 20px;
-        margin-top: 30px;
-    }
-}
-@media(max-width:1024px){
-    .related{
-        height: 60vh;
-    }
-    .related h1{
-        font-size: 30px;
-    }
-    .related hr{
-        width: 120px;
-        height: 3px;
-    }
-    .related-item{
-        gap: 15px;
-        margin-top: 20px;
+
+    .related-item {
+        gap: 1.25em;
+        margin-top: 1.88em;
     }
 }
-@media(max-width:800px){
-    .related{
-        height: 50vh;
-        gap: 6px;
+
+@media(max-width:1024px) {
+    .related {
+        height: 60em;
     }
-    .related h1{
-        font-size: 20px;
+
+    .related h1 {
+        font-size: 1.88em;
     }
-    .related hr{
-        width: 100px;
+
+    .related hr {
+        width: 7.5em;
+        height: 0.19em;
     }
-    .related-item{
-        gap: 5px;
+
+    .related-item {
+        gap: 0.94em;
+        margin-top: 1.25em;
     }
 }
-@media(max-width:500px){
-    .related{
-        height: 90vh;
+
+@media(max-width:800px) {
+    .related {
+        height: 50em;
+        gap: 0.38em;
     }
-    .related-item{
+
+    .related h1 {
+        font-size: 1.25em;
+    }
+
+    .related hr {
+        width: 6.25em;
+    }
+
+    .related-item {
+        gap: 0.31em;
+    }
+}
+
+@media(max-width:500px) {
+    .related {
+        height: 90em;
+    }
+
+    .related-item {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        gap: 1.25em;
     }
 }

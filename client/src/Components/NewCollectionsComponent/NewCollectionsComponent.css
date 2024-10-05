@@ -2,70 +2,77 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 100px;
+    gap: 0.63em;
+    margin-bottom: 6.25em;
 }
+
 .ournewcollections h1 {
     color: #171717;
-    font-size: 50px;
+    font-size: 3.13em;
     font-weight: 600;
 }
+
 .ournewcollections hr {
-    width: 200px;
-    height: 6px;
-    border-radius: 10px;
+    width: 12.50em;
+    height: 0.38em;
+    border-radius: 0.63em;
     background: #252525;
 }
+
 .ourcollections {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin-top: 50px;
-    gap: 30px;
+    margin-top: 3.13em;
+    gap: 1.88em;
 }
-@media(max-width:1280px){
-    .ournewcollections h1{
-        font-size: 40px;
+
+@media(max-width: 1280px) {
+    .ournewcollections h1 {
+        font-size: 2.50em;
     }
-    .ournewcollections hr{
-        width: 160px;
-        height: 4px;
+    .ournewcollections hr {
+        width: 10.00em;
+        height: 0.25em;
     }
-    .ourcollections{
-        gap: 20px;
-        margin-top: 30px;
-    }
-}
-@media(max-width:1024px){
-    .ournewcollections h1{
-        font-size: 30px;
-    }
-    .ournewcollections hr{
-        width: 120px;
-        height: 3px;
-    }
-    .ourcollections{
-        gap: 15px;
-        margin-top: 20px;
+    .ourcollections {
+        gap: 1.25em;
+        margin-top: 1.88em;
     }
 }
-@media(max-width:800px){
-    .ournewcollections{
-        gap: 6px;
+
+@media(max-width: 1024px) {
+    .ournewcollections h1 {
+        font-size: 1.88em;
     }
-    .ournewcollections h1{
-        font-size: 20px;
+    .ournewcollections hr {
+        width: 7.50em;
+        height: 0.19em;
     }
-    .ournewcollections hr{
-        width: 100px;
-    }
-    .ourcollections{
-        gap: 5px;
+    .ourcollections {
+        gap: 0.94em;
+        margin-top: 1.25em;
     }
 }
-@media(max-width:500px){
-    .ourcollections{
+
+@media(max-width: 800px) {
+    .ournewcollections {
+        gap: 0.38em;
+    }
+    .ournewcollections h1 {
+        font-size: 1.25em;
+    }
+    .ournewcollections hr {
+        width: 6.25em;
+    }
+    .ourcollections {
+        gap: 0.31em;
+    }
+}
+
+@media(max-width: 500px) {
+    .ourcollections {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        gap: 1.25em;
     }
 }

@@ -1,5 +1,5 @@
 .description {
-    margin: 120px 170px;
+    margin: 7.5em 10.63em;
 }
 .description-navigator {
     display: flex;
@@ -8,11 +8,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 600;
-    width: 171px;
-    height: 70px;
-    border: 1px solid #d0d0d0;
+    width: 10.69em;
+    height: 4.38em;
+    border: 0.06em solid #d0d0d0;
 }
 .description-nav-box.fade {
     background-color: #fbfbfb;
@@ -21,20 +21,20 @@
 .description-description {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    border: 1px solid #d0d0d0;
-    padding: 48px;
-    padding-bottom: 70px;
+    gap: 1.56em;
+    border: 0.06em solid #d0d0d0;
+    padding: 3em;
+    padding-bottom: 4.38em;
 }
 
 .rating-stars {
-    font-size: 24px;
+    font-size: 1.5em;
     cursor: pointer;
 }
 
 .star {
     color: grey;
-    margin-right: 5px;
+    margin-right: 0.31em;
 }
 
 .star.selected {
@@ -42,19 +42,20 @@
 }
 
 .average-rating {
-    margin-top: 10px;
+    margin-top: 0.63em;
 }
 
-@media(max-width:1280px){
-    .description{
-        margin: 60px;
+@media(max-width:1280px) {
+    .description {
+        margin: 3.75em;
     }
 }
-@media(max-width:800px){
-    .description{
-        margin: 60px 20px;
+
+@media(max-width:800px) {
+    .description {
+        margin: 3.75em 1.25em;
     }
-    .description-description{
-        font-size: 14px;
+    .description-description {
+        font-size: 0.88em;
     }
 }

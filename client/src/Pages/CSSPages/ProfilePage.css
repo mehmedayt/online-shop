@@ -1,58 +1,57 @@
 .profile {
     width: 100%;
-    min-height: 80vh;
+    min-height: 50.00em;
     background: #f3f3f3;
-    padding-top: 50px;
+    padding-top: 3.12em;
     display: flex;
     justify-content: center;
 }
 
 .profile-container {
-    width: 580px;
+    width: 36.25em;
     background: white;
-    padding: 40px 60px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2.50em 3.75em;
+    box-shadow: 0 0 0.63em rgba(0, 0, 0, 0.1);
 }
 
 .profile-container h1 {
-    margin-bottom: 30px;
+    margin-bottom: 1.88em;
 }
 
 .profile-container p {
-    margin-bottom: 10px;
+    margin-bottom: 0.63em;
 }
 
-
 .profile-section {
-    margin-bottom: 40px;
+    margin-bottom: 2.50em;
 }
 
 .profile-section h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
+    margin-bottom: 1.25em;
+    font-size: 1.38em;
 }
 
 .profile-section input {
     width: 100%;
-    height: 50px;
-    margin-bottom: 20px;
-    padding-left: 15px;
-    border: 1px solid #c9c9c9;
+    height: 3.12em;
+    margin-bottom: 1.25em;
+    padding-left: 0.94em;
+    border: 0.06em solid #c9c9c9;
     outline: none;
     color: #5c5c5c;
-    font-size: 16px;
+    font-size: 1.00em;
 }
 
 .profile-container button {
     width: 100%;
-    height: 50px;
+    height: 3.12em;
     color: white;
     background: #ff4141;
     border: none;
-    font-size: 18px;
+    font-size: 1.12em;
     font-weight: 500;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 0.63em;
 }
 
 .profile-container .delete-account {
@@ -62,43 +61,43 @@
 @media (max-width: 1280px) {
     .profile-container {
         width: auto;
-        max-width: 500px;
-        padding: 30px 50px;
+        max-width: 31.25em;
+        padding: 1.88em 3.12em;
     }
 
     .profile-section h2 {
-        font-size: 20px;
+        font-size: 1.25em;
     }
 
     .profile-section input {
-        height: 45px;
+        height: 2.81em;
     }
 
     .profile-container button {
-        height: 45px;
-        font-size: 16px;
+        height: 2.81em;
+        font-size: 1.00em;
     }
 }
 
 @media (max-width: 800px) {
     .profile-container {
-        padding: 20px 30px;
+        padding: 1.25em 1.88em;
     }
 
     .profile-container h1 {
-        font-size: 24px;
+        font-size: 1.50em;
     }
 
     .profile-section h2 {
-        font-size: 18px;
+        font-size: 1.12em;
     }
 
     .profile-section input {
-        height: 40px;
+        height: 2.50em;
     }
 
     .profile-container button {
-        height: 40px;
-        font-size: 16px;
+        height: 2.50em;
+        font-size: 1.00em;
     }
 }

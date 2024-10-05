@@ -1,120 +1,128 @@
 .news {
-    width: 65%;
-    height: 40vh;
+    width: 40.63em;
+    height: 25.00em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: auto;
-    padding: 0 140px;
-    margin-bottom: 150px;
+    padding: 0 8.75em;
+    margin-bottom: 9.38em;
     background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
-    gap: 30px;
+    gap: 1.88em;
 }
+
 .news h1 {
     color: #454545;
-    font-size: 55px;
+    font-size: 3.44em;
     font-weight: 600;
 }
+
 .news p {
     color: #454545;
-    font-size: 20px;
+    font-size: 1.25em;
 }
+
 .news div {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: white;
-    width: 730px;
-    height: 70px;
-    border-radius: 80px;
+    width: 45.63em;
+    height: 4.38em;
+    border-radius: 5.00em;
     border: 1px solid #e3e3e3;
 }
+
 .news input {
-    width: 500px;
-    margin-left: 30px;
+    width: 31.25em;
+    margin-left: 1.88em;
     border: none;
     outline: none;
     color: #616161;
     font-family: Poppins;
-    font-size: 16px;
+    font-size: 1.00em;
 }
+
 .news div button {
-    width: 210px;
-    height: 70px;
-    border-radius: 80px;
+    width: 13.13em;
+    height: 4.38em;
+    border-radius: 5.00em;
     background: black;
     color: white;
-    font-size: 16px;
+    font-size: 1.00em;
     cursor: pointer;
 }
-@media(max-width:1280px){
-    .news{
-        padding: 0 80px;
-        margin-bottom: 120px;
-        gap: 20px;
+
+@media(max-width: 1280px) {
+    .news {
+        padding: 0 5.00em;
+        margin-bottom: 7.50em;
+        gap: 1.25em;
     }
-    .news h1{
-        font-size: 36px;
+    .news h1 {
+        font-size: 2.25em;
     }
-    .news p{
-        font-size: 16px;
+    .news p {
+        font-size: 1.00em;
     }
-    .news div{
-        width: 600px;
-        height: 60px;
+    .news div {
+        width: 37.50em;
+        height: 3.75em;
     }
-    .news input{
-        width: 400px;
+    .news input {
+        width: 25.00em;
     }
-    .news div button{
-        width: 160px;
-        height: 60px;
-    }
-}
-@media(max-width:1024px){
-    .news{
-        margin-bottom: 60px;
-    }
-    .news h1{
-        font-size: 30px;
-    }
-    .news p{
-        font-size: 14px;
-    }
-    .news div{
-        width: 500px;
-        height: 50px;
-    }
-    .news input{
-        width: 300px;
-        font-size: 14px;
-    }
-    .news div button{
-        width: 120px;
-        height: 50px;
-        font-size: 14px;
+    .news div button {
+        width: 10.00em;
+        height: 3.75em;
     }
 }
-@media(max-width:500px){
-    .news{
-        height: 25vh;
+
+@media(max-width: 1024px) {
+    .news {
+        margin-bottom: 3.75em;
+    }
+    .news h1 {
+        font-size: 1.88em;
+    }
+    .news p {
+        font-size: 0.88em;
+    }
+    .news div {
+        width: 31.25em;
+        height: 3.13em;
+    }
+    .news input {
+        width: 18.75em;
+        font-size: 0.88em;
+    }
+    .news div button {
+        width: 7.50em;
+        height: 3.13em;
+        font-size: 0.88em;
+    }
+}
+
+@media(max-width: 500px) {
+    .news {
+        height: 15.63em;
         width: 100%;
         padding: 0;
-        gap: 15px;
+        gap: 0.94em;
     }
-    .news h1{
-        font-size: 16px;
+    .news h1 {
+        font-size: 1.00em;
     }
-    .news p{
-        font-size: 13px;
-        max-width: 200px;
+    .news p {
+        font-size: 0.81em;
+        max-width: 12.50em;
         text-align: center;
     }
-    .news div{
-        width: 290px;
+    .news div {
+        width: 18.13em;
     }
-    .news input{
-        width: 130px;
+    .news input {
+        width: 8.13em;
     }
 }
