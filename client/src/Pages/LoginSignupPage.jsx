@@ -22,8 +22,10 @@ const LoginSignupPage = () => {
   const handleErrors = (responseData) => {
     if (!responseData.success) {
       setPopupTitle("Error");
-      setPopupMessage(responseData.errors);
+      const message = responseData.errors || "An error occurred. Please try again.";
+      setPopupMessage(message);
       setShowPopup(true);
+      
       setFormData({
         username: "",
         password: "",
@@ -31,12 +33,13 @@ const LoginSignupPage = () => {
       });
     }
   };
+  
 
   const signup = async () => {
     try {
       const responseData = await postRequest("/auth/signup", formData);
       handleErrors(responseData);
-
+  
       if (responseData.success) {
         localStorage.setItem("auth-token", responseData.token);
         localStorage.setItem("user-email", formData.email);
@@ -44,23 +47,30 @@ const LoginSignupPage = () => {
       }
     } catch (error) {
       console.error("Signup error:", error);
+      setPopupTitle("Signup Error");
+      setPopupMessage("Unable to sign up. Please check your details and try again.");
+      setShowPopup(true);
     }
   };
+  
 
   const login = async () => {
-    try {
-      const responseData = await postRequest("/auth/login", formData);
-      handleErrors(responseData);
+  try {
+    const responseData = await postRequest("/auth/login", formData);
+    handleErrors(responseData);
 
-      if (responseData.success) {
-        localStorage.setItem("auth-token", responseData.token);
-        localStorage.setItem("user-email", formData.email);
-        window.location.replace("/");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
+    if (responseData.success) {
+      localStorage.setItem("auth-token", responseData.token);
+      localStorage.setItem("user-email", formData.email);
+      window.location.replace("/");
     }
-  };
+  } catch (error) {
+    console.error("Login error:", error);
+    setPopupTitle("Login Error");
+    setPopupMessage("Unable to login. Please check your credentials and try again.");
+    setShowPopup(true);
+  }
+};
 
   return (
     <div className="login">
